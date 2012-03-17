@@ -1,0 +1,91 @@
+
+/* upstatement-admin.js */
+
+/* 1  */ ;(function($){
+/* 2  */ 	$(document).ready(function(){
+/* 3  */ 		
+/* 4  */ 		sortAdminMenu();
+/* 5  */ 		addEditorLabels();
+/* 6  */ 		addGalleryOptions();
+/* 7  */ 		fixForm();
+/* 8  */ 		fixViewButtons();
+/* 9  */ 		
+/* 10 */ 		var body = $('body');
+/* 11 */ 		
+/* 12 */ 		function fixViewButtons(){
+/* 13 */ 			if ($('#post_parent').length && typenow != 'calculators'){
+/* 14 */ 				var link = $('#view-post-btn a');
+/* 15 */ 				var href = link.attr('href');
+/* 16 */ 				var lastSlashIndex = href.lastIndexOf('/');
+/* 17 */ 				var hStart = href.substr(0, lastSlashIndex);
+/* 18 */ 				var pid = $('#post_ID').val();
+/* 19 */ 				href = hStart + '#block-' + pid;
+/* 20 */ 				link.attr('href', href);
+/* 21 */ 			}
+/* 22 */ 		}
+/* 23 */ 		
+/* 24 */ 		function fixForm(){
+/* 25 */ 			$('form#post').attr('enctype', 'multipart/form-data');
+/* 26 */ 		}
+/* 27 */ 		
+/* 28 */ 		function sortAdminMenu(){
+/* 29 */ 			var links = $('#menu-links').first();
+/* 30 */ 			links.detach();
+/* 31 */ 			$('#menu-appearance').after(links);
+/* 32 */ 			links.find('a.menu-top').text('Footer Links');
+/* 33 */ 			
+/* 34 */ 			var promo = $('#toplevel_page_promo-manager').first();
+/* 35 */ 			promo.detach();
+/* 36 */ 			$('#menu-posts-rollers').after(promo);
+/* 37 */ 		}
+/* 38 */ 		
+/* 39 */ 		function addEditorLabels(){
+/* 40 */ 			$('#media-buttons a').append('<span class="graphicsTiny desc"></span>');
+/* 41 */ 			$('#media-buttons a.thickbox#add_image span.desc').text('Add Image');
+/* 42 */ 			$('#media-buttons a.thickbox#add_video span.desc').text('Add Video');
+/* 43 */ 			$('#media-buttons a.thickbox#add_audio span.desc').text('Add Audio');
+/* 44 */ 			$('#media-buttons a.thickbox#add_media').hide();
+/* 45 */ 		}
+/* 46 */ 		
+/* 47 */ 		function pad(number, length) {
+/* 48 */ 			var str = '' + number;
+/* 49 */ 			while (str.length < length) {
+/* 50 */ 				str = '0' + str;
+
+/* upstatement-admin.js */
+
+/* 51 */ 			}
+/* 52 */ 			return str;
+/* 53 */ 		}
+/* 54 */ 		
+/* 55 */ 		function addGalleryOptions(){
+/* 56 */ 			var powerTools = $('<span>Tools: <a href="#" id="autonumber">Auto-Number</a> | <a href="#" id="gal-showall">Show All</a> | <a href="#" id="gal-hideall">Hide All</a></span>');
+/* 57 */ 			$('#sort-buttons').prepend(powerTools);
+/* 58 */ 			$('#autonumber').click(autoNumberGallery);
+/* 59 */ 			$('#gal-showall').click(expandAllGalleryImages);
+/* 60 */ 			$('#gal-hideall').click(collapseAllGalleryImages);
+/* 61 */ 		}
+/* 62 */ 		
+/* 63 */ 		function expandAllGalleryImages(e){
+/* 64 */ 			$('a.toggle.describe-toggle-on').trigger('click');
+/* 65 */ 		}
+/* 66 */ 		
+/* 67 */ 		function collapseAllGalleryImages(e){
+/* 68 */ 			$('a.toggle.describe-toggle-off').trigger('click');
+/* 69 */ 		}
+/* 70 */ 		
+/* 71 */ 		function autoNumberGallery(e){
+/* 72 */ 			$('.menu_order_input').each(function(i){
+/* 73 */ 				var j = i+1;
+/* 74 */ 				$(this).val(j);
+/* 75 */ 			});
+/* 76 */ 		}
+/* 77 */ 		
+/* 78 */ 		
+/* 79 */ 		
+/* 80 */ 	});
+/* 81 */ 	
+/* 82 */ 	function trace(s) {
+/* 83 */ 	  try { console.log(s) } catch (e) { }
+/* 84 */ 	}
+/* 85 */ })(jQuery);
