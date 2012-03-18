@@ -29,7 +29,7 @@
 <?php wp_head() ?>
 </head>
 
-<body class="<?php sandbox_body_class() ?>">
+<body class="<?php sandbox_body_class(bp_get_the_body_class()) ?>">
 
 <div id="wrapper" class="hfeed">
 
@@ -44,14 +44,14 @@
 	<div id="profile-tools">
 		<span class="network">Denizen Network</span>
 		<ul class="tools">
-		<li>My Profile</li>
-		<li>Schools </li>
+		<li><a href="/members/<?php echo get_user_info()->slug; ?>/profile/public/">My Profile</a></li>
+		<li><a href="/schools/">Schools</a></li>
 		<li>Sign Out </li>
 		</ul>
 	</div>
 	
 	<ul id="pages">
-<?php wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
+<?php //wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
 				</ul>
 	</div><!--  #header -->
 

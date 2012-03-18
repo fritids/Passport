@@ -157,6 +157,10 @@
 	}
 
 	function get_user_info($uid){
+		if (!$uid){
+			$user = wp_get_current_user();
+			$uid = $user->ID;
+		}
 		$wpuser = get_userdata($uid);
 		$user = new stdClass();
 		foreach($wpuser as $key => $val){
@@ -176,8 +180,7 @@
 		if ($user->simple_local_avatar){
 			$user->simple_local_avatar = unserialize($user->simple_local_avatar);
 		}
-		$schools = $wpdb->get_col("SELECT school_id FROM wp_users_schools WHERE user_id = $uid;");
-		$user->school_ids = $schools;
+		$user->slug = $user->user_nicename;
 		return $user;
 	}	
 

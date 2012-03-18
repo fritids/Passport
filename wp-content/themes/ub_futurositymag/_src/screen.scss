@@ -302,3 +302,19 @@ em {
 	
 	
 }
+
+
+/* SCHOOLS PROFILES */
+#item-body {
+	@include clearfix;
+}
+
+#item-rail {
+	width:25%;
+	float:left;
+	min-height:100px;
+}
+#item-main {
+	width:75%;
+	float:left
+}
