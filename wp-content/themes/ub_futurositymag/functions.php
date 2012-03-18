@@ -353,6 +353,7 @@ add_theme_support('post-thumbnails');
 set_include_path(getcwd());
 
 include('functions-upstatement.php');
+include('functions-passport.php');
 
 function new_excerpt_length($length) {
 	return 30;

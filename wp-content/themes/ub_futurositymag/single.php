@@ -131,8 +131,12 @@
 				    } else {
 					    the_author_posts_link(); 
 					?></p>
-				<p>
-					<?php userphoto_the_author_thumbnail() ?></p>				
+					<?php 
+					if (function_exists('userphoto_the_author_thumbnail')){
+						echo '<p>';
+						userphoto_the_author_thumbnail();
+						echo '</p>';
+					}?>				
 				
 						<div class="author-desc"><p><?php the_author_description(); ?></p></div>
 						<div class="author-links">Posts by <?php the_author_posts_link(); ?><br/>
@@ -194,29 +198,6 @@ echo $cat->cat_name . ' ';
 
 </div>
 
-<!--
-		<div id="nav-below" class="navigation">
-		<h3>Browse</h3>
-				<div class="nav-previous"><?php previous_post_link('<span class="meta-nav">&laquo;</span> %link') ?></div>
-				<div class="nav-next"><?php next_post_link('<span class="meta-nav">&raquo;</span> %link') ?></div>
-				<h3>Browse in <?php 
-foreach((get_the_category()) as $cat) { 
-echo $cat->cat_name . ' '; 
-} ?></h3>
-			<div class="nav-previous"><?php previous_post_link('&laquo; %link', '%title', TRUE); ?></div>
-			<div class="nav-next"><?php next_post_link('&raquo; %link', '%title', TRUE); ?></div>
-
-				<?php if ( function_exists('related_posts')) :?>
-			<h3>Related Posts</h3>
-			<ul>				
-			<?php related_posts(); ?>
-			</ul>
-	
-		<?php endif; ?>
-
-			</div>
-
--->			
 <?php comments_template(); ?>
 <?php endwhile;?><?php endif; ?>
 								

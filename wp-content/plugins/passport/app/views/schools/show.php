@@ -9,6 +9,9 @@
     if (!empty($object->address2)) {
         echo '<div>'.$object->address2.'</div>';
     }
+    foreach($nomads as $nomad){
+    	$this->render_view('nomads/_item', array('locals' => array('nomad' => $nomad)));
+    }
    
 ?>
  

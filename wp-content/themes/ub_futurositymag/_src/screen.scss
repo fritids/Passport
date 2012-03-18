@@ -1,0 +1,179 @@
+/* Bring in all Compass Helpers 
+// as well as Titos base style files */
+@import "partials/base";
+
+
+/*	Primary Stylesheet						     
+	Author: Tito Bottitta + Upstatement			 */ 
+
+
+/* ============================================= */
+
+/*	Universal						   			 */ 
+
+/* ============================================= */
+
+a {
+	text-decoration: none;
+	color: inherit;
+	&:hover {		
+	}
+}
+
+.hidden {
+	display:none;
+}
+
+
+
+/* ============================================= */
+
+/*	Typography						   			 */ 
+
+/* ============================================= */
+
+strong, .strong {
+	font-weight: bold;
+	}
+
+em {
+	font-style: italic;
+	}
+
+
+
+/* ============================================= */
+
+/*	Layout 							   			 */ 
+
+/* ============================================= */
+
+
+
+
+
+
+/* ============================================= */
+
+/*	Objects							   			 */ 
+
+/* ============================================= */
+
+
+
+
+
+
+/* ! ============================================= */
+
+/* ! Header & Main Navigation	   				   */ 
+
+/* ! ============================================= */
+
+
+
+
+
+
+/* ! ============================================= */
+
+/* ! Footer							   			   */ 
+
+/* ! ============================================= */
+
+
+
+
+
+
+
+/* ! ============================================= */
+
+/* ! Homepage						   			   */ 
+
+/* ! ============================================= */
+
+
+
+
+/* ! ============================================= */
+
+/* ! Modal							   			   */ 
+
+/* ! ============================================= */
+
+* {
+	box-sizing:border-box;
+}
+
+.modal {
+	display:none;
+}	
+
+.modal-style-large {
+	background-color:rgba(white, .95);
+	border:5px solid rgba($gray-dark, .5);
+	border-radius:10px;
+	min-width:900px;
+	min-height:400px;
+}
+
+#modal-signup-scrollable {
+	padding:40px 50px;
+}
+
+.submit-signup {
+	@include btn-basic(large)
+}
+
+
+
+
+/* ! ============================================= */
+
+/* ! Media Queries							      */
+
+/* ! ============================================= */
+
+
+@media all and (orientation:portrait) { 
+  /* Style adjustments for portrait mode goes here */
+  
+}
+
+@media all and (orientation:landscape) { 
+  /* Style adjustments for landscape mode goes here */
+  
+}
+
+/* Grade-A Mobile Browsers (Opera Mobile, iPhone Safari, Android Chrome)  
+   Consider this: www.cloudfour.com/css-media-query-for-mobile-is-fools-gold/ */
+@media screen and (max-device-width: 480px) {
+  
+  
+  /* Uncomment if you don't want iOS and WinMobile to mobile-optimize the text for you
+     j.mp/textsizeadjust 
+  html { -webkit-text-size-adjust:none; -ms-text-size-adjust:none; } */
+}
+
+
+/* Auto complete */
+
+
+.autocomplete-w1 { background:url(img/shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
+.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; }
+.autocomplete div { padding:2px 5px; white-space:nowrap; }
+.autocomplete strong { font-weight:normal; color:#3399FF; }
+
+
+
+/* ============================================= */
+
+/*	Print Styles							     
+	Inline to avoid required HTTP connection     */
+
+/* ============================================= */
+
+// Import Print Styles
+@import "partials/print";

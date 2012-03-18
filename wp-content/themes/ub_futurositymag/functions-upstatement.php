@@ -44,10 +44,31 @@
 	}
 
 	
-	function get_post_info($pid){
+	function get_post_info($pid = 0){
+		if ($pid == 0){
+			$pid = get_the_ID();
+		}	
 		$post = get_post($pid);
 		$post->title = $post->post_title;
 		$post->body = $post->post_content;
+		$post->excerpt = get_the_excerpt();
+		if (!$post->excerpt){
+			$post->excerpt = strip_tags($post->post_content);
+			$post->excerpt = trim(str_replace('&nbsp;', '', $post->excerpt));
+			$post->excerpt = explode(' ',$post->excerpt);
+			$post->excerpt = array_splice($post->excerpt, 0, 50);
+			$post->excerpt = implode(' ', $post->excerpt);
+			
+		}
+		$post->slug = $post->post_name;
+		$post->permalink = get_permalink($pid);
+		$post->path = str_replace(get_bloginfo('url'), '', $post->permalink);
+		$post->custom = get_post_custom($pid);
+		if ($post->custom){
+			foreach($post->custom as $key => $value){
+				$post->$key = $value[0];
+			}
+		}
 		return $post;
 	}
 	
@@ -136,7 +157,15 @@
 	}
 
 	function get_user_info($uid){
-		$user = get_userdata($uid);
+		$wpuser = get_userdata($uid);
+		$user = new stdClass();
+		foreach($wpuser as $key => $val){
+			$user->$key = $val;
+		}
+		foreach($wpuser->data as $key => $val){
+			$user->$key = $val;
+		}
+		
 		global $wpdb;
 		$meta = $wpdb->get_results("SELECT * FROM $wpdb->usermeta WHERE user_id = $uid");
 		foreach($meta as $md){
@@ -147,6 +176,8 @@
 		if ($user->simple_local_avatar){
 			$user->simple_local_avatar = unserialize($user->simple_local_avatar);
 		}
+		$schools = $wpdb->get_col("SELECT school_id FROM wp_users_schools WHERE user_id = $uid;");
+		$user->school_ids = $schools;
 		return $user;
 	}	
 

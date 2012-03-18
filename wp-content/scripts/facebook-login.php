@@ -1,13 +1,5 @@
 <?php
-	/* FUNCTIONS */
-	
-	function find_user_by_meta($key, $value){
-		global $wpdb;
-		$query = "SELECT user_id FROM $wpdb->usermeta WHERE meta_key = '$key' AND meta_value = '$value'";
-		$wpdb->flush();
-		$result = $wpdb->get_row($query);
-		return $result->user_id;
-	}
+
 
 	include_once($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 	$user = (object)$_POST['user'];

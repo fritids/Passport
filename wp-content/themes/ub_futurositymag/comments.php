@@ -121,8 +121,8 @@ foreach ( $comments as $comment )
 
 							<div class="form-label"><label for="comment"><?php _e('Comment', 'sandbox') ?></label></div>
 							<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
-
-							<div class="form-submit"><input name="submit" type="image" style="width: 74px; height:24px;padding:12px 0;" src="<?php bloginfo('template_url'); ?>/images/speak.png" id="submit" tabindex="5" value="Submit Comment" />
+							<div class="form-submit">
+								<input name="submit" type="submit" style="width: 74px; height:24px;padding:12px 0;" src="<?php bloginfo('template_url'); ?>/images/speak.png" id="submit" tabindex="5" value="Submit Comment" />
 <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" /></div>
 
 							<?php do_action('comment_form', $post->ID); ?>
