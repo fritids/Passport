@@ -34,22 +34,33 @@
 <div id="wrapper" class="hfeed">
 
 	<div id="header">
+
+
+<h1><a class="blog-title" href="<?php echo get_settings('home') ?>/" title="<?php bloginfo('name') ?>" rel="home"><?php bloginfo('name') ?></a><span class="blog-deck"> <?php bloginfo('description') ?></span></h1>
+	<div id="blog-description"></div>
+	<?php include (TEMPLATEPATH . '/searchform.php'); ?>
+	
+		
+	<div id="profile-tools">
+		<span class="network">Denizen Network</span>
+		<ul class="tools">
+		<li>My Profile</li>
+		<li>Schools </li>
+		<li>Sign Out </li>
+		</ul>
+	</div>
+	
 	<ul id="pages">
 <?php wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
 				</ul>
-
-<h1><a class="blog-title" href="<?php echo get_settings('home') ?>/" title="<?php bloginfo('name') ?>" rel="home"><?php bloginfo('name') ?></a><span> | <?php bloginfo('description') ?></span></h1>
-	<div id="blog-description"></div>
-	<?php include (TEMPLATEPATH . '/searchform.php'); ?>
 	</div><!--  #header -->
 
 	<div id="access">
 		<div class="skip-link"><a href="#content" title="<?php _e('Skip navigation to the content', 'sandbox'); ?>"><?php _e('Skip to content', 'sandbox'); ?></a></div>
 	</div>
 	<div id="fb-root"></div>
-	<nav>
-		<a href="#" class="trigger-facebook-login">Login with Facebook</a>
-	</nav>
+
+	
 	<?php
 		include('partials/nomad-nag.php');
 	?>

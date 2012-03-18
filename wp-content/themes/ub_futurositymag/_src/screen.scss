@@ -177,3 +177,83 @@ em {
 
 // Import Print Styles
 @import "partials/print";
+
+.blog-title {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 60pt;
+	display: block;
+	margin-top: 30px;
+}
+
+.blog-deck {
+	font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 14pt;
+	display:block;
+	margin-left: 315px;
+	margin-top: -10px;
+	letter-spacing: 3px;
+}
+
+#pages {
+	float: left;
+	display: block;
+	margin-left:-10px;
+	
+	li.page_item {
+		text-transform: uppercase;
+		font-size: 10pt;
+		letter-spacing: 3px;
+		font-family: $sans;
+		margin-top: 30px;
+		padding-right: 10px;		
+	
+	}
+	
+}
+
+.skip-link a, .sbox {
+	display: none;
+}
+
+#profile-tools {
+	float: right; 
+	margin-top: -65px;
+
+	
+	.network {
+		font-family: $sans;
+		text-transform: uppercase;
+		font-size: 10px;
+		color: #666000;
+		
+	}
+	
+	.tools {
+		background-image: url("../images/ribbon-repeat.png");
+		background-repeat:repeat-y;
+		width:93px;
+		
+		li {
+		list-style-type: none;
+		font-family: $serif;
+		color: #FFFFFF;
+		font-size:13px;
+		line-height: 23px;
+		padding-top: 3px;
+		text-align:center;
+		
+		}
+		
+		
+	}
+	&:after {
+			background-image:url('../images/ribbon-bottom.png');
+			background-repeat:no-repeat;
+			display:block;
+			height:40px;
+			content:' '
+		}
+	
+	
+}

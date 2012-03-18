@@ -28,6 +28,8 @@
 
 | Powered by <a href="http://wordpress.org/" title="<?php _e('WordPress', 'sandbox'); ?>" rel="generator"><?php _e('WordPress', 'sandbox'); ?></a></span>		<span class="meta-sep">&amp;</span>		<span id="theme-link"><a href="http://www.plaintxt.org/themes/sandbox/" title="<?php _e('Sandbox for WordPress', 'sandbox'); ?>" rel="designer"><?php _e('Sandbox', 'sandbox'); ?></a> | <a href="http://www.futurosity.com/" title="Futurosity">Theme</a> by <a href="http://www.upstartblogger.com/">Upstart Blogger</a> | Copyright &copy; <?php
 	echo date('Y');
-?> by <?php bloginfo('name'); ?>. All rights reserved.</span>	</div><!-- #footer --></div><!-- #wrapper .hfeed --><?php wp_footer() ?></body>
+?> by <?php bloginfo('name'); ?>. All rights reserved.</span>	</div><!-- #footer --></div><!-- #wrapper .hfeed --><?php wp_footer() ?>
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
 
 </html>
