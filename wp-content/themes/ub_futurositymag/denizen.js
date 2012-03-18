@@ -14,6 +14,12 @@
 		
 	});
 	
+	$('.trigger-modal-close').click(function(){
+		try {
+			$.modal.close();
+		} catch(e){}
+	});
+	
 	function trace(s) {
 		try { console.log(s) } catch (e) {  }
 	}

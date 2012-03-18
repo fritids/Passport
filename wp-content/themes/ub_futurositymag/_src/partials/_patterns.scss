@@ -896,6 +896,7 @@ $form-size: med !default;
 
 	.form-row {
 		input[type=text],
+		input[type=number],
 		select,
 		textarea,
 		.uneditable-input,
@@ -935,6 +936,7 @@ $form-size: med !default;
 
 	.form-row {
 		input[type=text],
+		input[type=number],
 		select,
 		textarea,
 		.uneditable-input,
@@ -974,6 +976,7 @@ $form-size: med !default;
 
 	.form-row {
 		input[type=text],
+		input[type=number],
 		select,
 		textarea,
 		.uneditable-input,
@@ -1030,7 +1033,7 @@ $sidesaddle-width: 130px; //Default width for sidesaddle labels
 		width: $sidesaddle-width;
 		text-align: right;
 		} 
-	// Shift over the inside div to align all label's relevant content
+	// Shift over the inside div to align all labels relevant content
 	.input,
 	.legend-h,
 	.input-prepend,
@@ -1123,6 +1126,7 @@ fieldset {
 
 // Input defaults. 
 input[type=text],
+input[type=number],
 textarea,
 select,
 .uneditable-input {
@@ -1165,7 +1169,7 @@ select, input[type=file], input.file {
 	}
 
 // Focus states
-input[type=text], textarea {
+input[type=text], textarea, input[type=number] {
 	@include trans(.2s, border, linear);
 	@include box-shadow(rgba(0, 0, 0, 0.1) 0 1px 3px inset);
 	&:focus, &:focus {
@@ -1229,7 +1233,7 @@ textarea[readonly] {
 	.help-inline {
 		color: $error-primary;
 		}
-	input, input[type=text], textarea {
+	input, input[type=text], textarea, input[type=number] {
 		color: $error-primary;
 		border-color: #ee5f5b;
 		&:focus, 
@@ -1254,7 +1258,7 @@ textarea[readonly] {
 	.help-inline {
 		color: $warning-primary;
 		}
-	input, input[type=text], textarea {
+	input, input[type=text], textarea, input[type=number] {
 		color: #c09853;
 		border-color: $warning-primary;
 		&:focus, 
@@ -1279,7 +1283,7 @@ textarea[readonly] {
 	.help-inline {
 		color: $success-primary;
 		}
-	input, input[type=text], textarea {
+	input, input[type=text], textarea, input[type=number] {
 		color: $success-primary;
 		border-color: #57a957;
 		&:focus, 
@@ -1305,7 +1309,7 @@ textarea[readonly] {
 	color: #808080;
 
 	// Default width for inline inputs
-	input[type=text], select {
+	input[type=text], select, input[type=number] {
 		width: 15%;	
 		}
 	.help-block {

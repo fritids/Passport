@@ -55,6 +55,10 @@ class NomadsController extends MvcPublicController {
 	public function init(){
 	}
 	
+	public function add_meta(){
+		
+	}	
+	
 	public function show(){	
 		$object = $this->model->find_by_id($this->params['id'], array(
 			'includes' => array('Event')
