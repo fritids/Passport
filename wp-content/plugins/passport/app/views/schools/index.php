@@ -1,9 +1,11 @@
 <h2>Schools</h2>
 
-<?php foreach ($objects as $object): ?>
+<?php 
+	foreach ($objects as $object){
 
-	<?php $this->render_view('_item', array('locals' => array('object' => $object))); ?>
+		//print_r($object);
+		$this->render_view('_item', array('locals' => array('school' => $object)));
 
-<?php endforeach; ?>
-
+	}
+?>
 <?php echo $this->pagination(); ?>

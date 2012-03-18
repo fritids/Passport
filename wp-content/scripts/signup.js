@@ -4,6 +4,7 @@ var denizenSignup;
 
 	var THIS;
 	var lastInput;
+	var scrollable;
 	
 	function DenizenSignup() {
 		THIS = this;
@@ -16,12 +17,17 @@ var denizenSignup;
 		}
 		$('.trigger-add-school-row').bind('click', THIS.addSchoolRow);
 		$('.trigger-signup-complete').bind('click', THIS.sendSignupData);
+		$('.trigger-signup-cancel').bind('click', THIS.closeSignup);
 		$('.signup-school-name').live('click', function(){
 			lastInput = $(this);
 		});
 		THIS.initAutoComplete();
-		
 	}
+	
+	DenizenSignup.prototype.closeSignup = function(){
+		$.modal.close();
+		$.post('/nomads/add_meta', {key:'no_nag', value:true}, trace);
+	}	
 	
 	DenizenSignup.prototype.initAutoComplete = function(){
 		$('.signup-school-name').each(function(){
@@ -54,6 +60,11 @@ var denizenSignup;
 		});
 		trace(schools);
 		$.post('/nomads/schools/add/', {schools:schools}, trace);
+		$.modal.close();
+	}
+	
+	DenizenSignup.prototype.onSignup = function(data){
+		
 	}
 	
 	DenizenSignup.prototype.addSchoolRow = function(){

@@ -2,8 +2,6 @@
 
 class SchoolsController extends MvcPublicController {
 	
-	public function fucker(){
-	}
 	
 	public function auto_complete_search(){
 		global $wpdb;
@@ -20,10 +18,6 @@ class SchoolsController extends MvcPublicController {
 		}
 		echo json_encode($ret);
 		exit;
-	}
-	
-	public function index(){
-		
 	}
 	
 	public function show(){
