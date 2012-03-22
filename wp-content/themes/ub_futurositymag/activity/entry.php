@@ -18,7 +18,12 @@
 	<div class="activity-avatar">
 		<a href="<?php bp_activity_user_link(); ?>">
 
-			<?php bp_activity_avatar(); ?>
+			<?php 
+			$act = get_activity_info();
+			$poster = get_user_info($act->user_id);
+			echo '<img src="'.$poster->fb_image_thumb.'" />';
+			
+			?>
 
 		</a>
 	</div>
@@ -27,7 +32,11 @@
 
 		<div class="activity-header">
 
-			<?php bp_activity_action(); ?>
+			<?php 
+			echo '<h4>'.$act->display_name.'</h4>';
+			//bp_activity_action(); 
+			
+			?>
 
 		</div>
 

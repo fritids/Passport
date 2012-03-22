@@ -1,7 +1,11 @@
 <?php
-	/*
-	add_action('comment_post', 'update_comment_with_uid');
-	
-	function update_comment_with_uid($cid, $status){
-		
-	}*/
+	function bp_dump() {
+		global $bp;
+	 
+		foreach ( (array)$bp as $key => $value ) {
+			echo '&lt;pre&gt;';
+			echo '&lt;strong&gt;' . $key . ': &lt;/strong&gt;&lt;br /&gt;';
+			print_r( $value );
+			echo '&lt;/pre&gt;';
+		}
+	}

@@ -6,7 +6,6 @@
 	$user_id = find_user_by_meta('fbid', $user->id);
 	$newreg = false;
 	if (!$user_id){
-		//FRESH FISH!!!!
 		$newreg = true;
 		$user->email = str_replace('u0040', '@', $user->email);
 		$pwd = wp_generate_password();

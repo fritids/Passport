@@ -15,12 +15,15 @@
 
 	<div id="whats-new-avatar">
 		<a href="<?php echo bp_loggedin_user_domain(); ?>">
-			<?php bp_loggedin_user_avatar( 'width=' . bp_core_avatar_thumb_width() . '&height=' . bp_core_avatar_thumb_height() ); ?>
+			<?php 
+			$user = get_user_info();
+			echo '<img src="'.$user->fb_image_thumb.'" />';
+			//bp_loggedin_user_avatar( 'width=' . bp_core_avatar_thumb_width() . '&height=' . bp_core_avatar_thumb_height() ); ?>
 		</a>
 	</div>
 
 	<h5><?php if ( bp_is_group() )
-			printf( __( "What's new in %s, %s?", 'buddypress' ), bp_get_group_name(), bp_get_user_firstname() );
+			printf( __( "What's new at %s, %s?", 'buddypress' ), bp_get_group_name(), bp_get_user_firstname() );
 		else
 			printf( __( "What's new, %s?", 'buddypress' ), bp_get_user_firstname() );
 	?></h5>

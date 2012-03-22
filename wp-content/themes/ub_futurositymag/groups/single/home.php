@@ -29,9 +29,10 @@
 				
 				<?php do_action( 'bp_before_group_body' );
 				echo '<section id="item-rail">';
-				if (bp_is_group_members() && bp_group_is_visible() ){
+				if (bp_group_is_visible() ){
 					locate_template( array( 'groups/single/members.php' ), true );
-				}
+				} else {
+				}	
 				echo '</section>';
 				echo '<section id="item-main">';
 				if ( bp_is_group_admin_page() && bp_group_is_visible() ) :
@@ -48,7 +49,7 @@
 				elseif ( bp_is_group_membership_request() ) :
 					locate_template( array( 'groups/single/request-membership.php' ), true );
 
-				elseif ( bp_group_is_visible() && bp_is_active( 'activity' ) ) :
+				elseif ( bp_group_is_visible()) :
 					locate_template( array( 'groups/single/activity.php' ), true );
 
 				elseif ( bp_group_is_visible() ) :

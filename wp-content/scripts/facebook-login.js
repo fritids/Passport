@@ -15,7 +15,7 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.launchFacebookLogin = function(e){
-		FB.login(THIS.onFacebookLogin, {scope:'email, publish_stream, publish_checkins'});
+		FB.login(THIS.onFacebookLogin, {scope:'email, publish_stream, '});
 	};
 	
 	FacebookLogin.prototype.onFacebookLogin = function(response){

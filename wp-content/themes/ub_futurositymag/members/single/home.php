@@ -15,7 +15,7 @@
 		<div class="padder">
 
 			<?php do_action( 'bp_before_member_home_content' ); ?>
-
+			<div id="item-rail">
 			<div id="item-header" role="complementary">
 
 				<?php locate_template( array( 'members/single/member-header.php' ), true ); ?>

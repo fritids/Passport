@@ -24,6 +24,10 @@ a {
 	display:none;
 }
 
+textarea {
+	resize:none;
+}	
+
 
 
 /* ============================================= */
@@ -313,8 +317,21 @@ em {
 	width:25%;
 	float:left;
 	min-height:100px;
+	
+	.school-members-rail {
+		img {
+			width:50px;
+			height:50px;
+		}
+	}
 }
 #item-main {
 	width:75%;
 	float:left
+}
+
+/* Activity */
+
+body form#whats-new-form textarea {
+	height:30px;
 }

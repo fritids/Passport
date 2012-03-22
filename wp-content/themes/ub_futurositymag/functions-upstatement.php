@@ -155,8 +155,15 @@
 			return $count;
 		}
 	}
+	
+	function get_activity_info($aid=0){
+		if (!$aid){
+			global $activities_template;
+			return $activities_template->activity;
+		}
+	}
 
-	function get_user_info($uid){
+	function get_user_info($uid=0){
 		if (!$uid){
 			$user = wp_get_current_user();
 			$uid = $user->ID;
@@ -181,6 +188,10 @@
 			$user->simple_local_avatar = unserialize($user->simple_local_avatar);
 		}
 		$user->slug = $user->user_nicename;
+		$user->fb_image_thumb = 'http://graph.facebook.com/'.$user->fbid.'/picture';
+		$user->fb_image = 'http://graph.facebook.com/'.$user->fbid.'/picture?type=large';
+		//print_r($user);
+		$user->profile_url = '/members/'.$user->user_login.'/profile/';
 		return $user;
 	}	
 
