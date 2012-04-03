@@ -9,7 +9,7 @@
 
 			<div id="item-header" role="complementary">
 
-				<?php locate_template( array( 'groups/single/group-header.php' ), true ); ?>
+				
 
 			</div><!-- #item-header -->
 			<!--
@@ -29,12 +29,22 @@
 				
 				<?php do_action( 'bp_before_group_body' );
 				echo '<section id="item-rail">';
+				?>
+				<div id="item-header-avatar">
+	<a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>">
+
+		<?php bp_group_avatar(array('class'=>'group-profile-avatar')); ?>
+
+	</a>
+</div><!-- #item-header-avatar -->
+				<?
 				if (bp_group_is_visible() ){
 					locate_template( array( 'groups/single/members.php' ), true );
 				} else {
 				}	
 				echo '</section>';
 				echo '<section id="item-main">';
+				locate_template( array( 'groups/single/group-header.php' ), true );
 				if ( bp_is_group_admin_page() && bp_group_is_visible() ) :
 					locate_template( array( 'groups/single/admin.php' ), true );
 

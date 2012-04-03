@@ -2,6 +2,8 @@
 
 do_action( 'bp_before_group_header' );
 
+$gi = get_group_info();
+
 ?>
 
 <div id="item-actions">
@@ -29,16 +31,10 @@ do_action( 'bp_before_group_header' );
 
 </div><!-- #item-actions -->
 
-<div id="item-header-avatar">
-	<a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>">
 
-		<?php bp_group_avatar(); ?>
-
-	</a>
-</div><!-- #item-header-avatar -->
 
 <div id="item-header-content">
-	<h2><a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>"><?php bp_group_name(); ?></a><span class="activity"><?php printf( __( 'Updated %s', 'buddypress' ), bp_get_group_last_active() ); ?></span></h2>
+	<h2 class="section-header"><a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>"><?php bp_group_name(); ?></a><span class="activity"><?php printf( __( 'Updated %s', 'buddypress' ), bp_get_group_last_active() ); ?></span></h2>
 	<!--<span class="highlight"><?php bp_group_type(); ?></span> -->
 	
 
@@ -46,7 +42,11 @@ do_action( 'bp_before_group_header' );
 
 	<div id="item-meta">
 
-		<?php bp_group_description(); ?>
+		<?php 
+		echo '<p class="text-oversize group-profile-desc">';
+		echo $gi->description;
+		echo '</p>';
+		?>
 
 		<div id="item-buttons">
 

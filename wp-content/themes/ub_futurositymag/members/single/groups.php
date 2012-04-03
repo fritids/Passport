@@ -44,7 +44,7 @@ else :
 
 	<div class="groups mygroups">
 
-		<?php locate_template( array( 'groups/groups-loop.php' ), true ); ?>
+		<?php locate_template( array( 'groups/members-groups-loop.php' ), true ); ?>
 
 	</div>
 

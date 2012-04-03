@@ -20,7 +20,7 @@
 <?php $feature_post = get_posts( 'category=455&numberposts=4' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -41,7 +41,7 @@
 <?php $feature_post = get_posts( 'category=4&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -60,7 +60,7 @@
 <?php $feature_post = get_posts( 'category=15&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -79,7 +79,7 @@
 <?php $feature_post = get_posts( 'category=384&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -98,7 +98,7 @@
 <?php $feature_post = get_posts( 'category=14&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
- <li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+ <li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -121,7 +121,7 @@
 <?php $feature_post = get_posts( 'category=53&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>

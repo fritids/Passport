@@ -7,21 +7,9 @@
 			<div class="items">
 				<article id="modal-screen-signup-schools" class="poo">
 					
-						<fieldset class="signup-school-row">
-							<input type="text" class="signup-school-name" placeholder="Where did you go to School?" />
-							<label class="inline-label">Starting Year</label>
-							<input type="number" class="signup-school-year-start" placeholder="1996"/>
-							<label class="inline-label">Ending Year</label>
-							<input type="number" class="signup-school-year-end"  placeholder="2002"/>
-						</fieldset>
-						
-						<fieldset class="signup-school-row hidden blank-row">
-							<input type="text" class="signup-school-name" placeholder="Where did you go to School?" />
-							<label class="inline-label">Starting Year</label>
-							<input type="number" class="signup-school-year-start" placeholder="2002" />
-							<label class="inline-label">Ending Year</label>
-							<input type="number" class="signup-school-year-end" placeholder="2006"/>
-						</fieldset>
+						<?php
+							include('add-school-row.php');
+						?>
 						
 						<a href="#" class="trigger-add-school-row add-school-row ">
 							Add another school

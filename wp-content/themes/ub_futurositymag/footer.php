@@ -20,6 +20,7 @@
 	<script type="text/javascript" src="/wp-content/scripts/jquery.autocomplete.min.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/jquery.scrollable.min.js"></script>
 	
+	<script type="text/javascript" src="/wp-content/scripts/passport.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/facebook-login.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/signup.js"></script>
 	

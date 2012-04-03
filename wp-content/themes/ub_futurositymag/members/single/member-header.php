@@ -11,27 +11,26 @@
 
 <?php do_action( 'bp_before_member_header' ); ?>
 
-<div id="item-header-avatar">
-	<a href="<?php bp_user_link(); ?>">
 
-		<?php 
-		global $bp;
-		$user = get_user_info($bp->displayed_user->id);
-		echo '<img src="'.$user->fb_image.'" />';
-		
-		//bp_displayed_user_avatar( 'type=full' ); ?>
-
-	</a>
-</div><!-- #item-header-avatar -->
 
 <div id="item-header-content">
 
 	<h2>
-		<a href="<?php bp_displayed_user_link(); ?>"><?php bp_displayed_user_fullname(); ?></a>
+		<?php
+			if (bp_displayed_user_id() == get_current_user_id()){
+				echo '<div class="content-editable" data-field="display_name" data-table="users" contenteditable="true">';
+				echo get_user_display_name(bp_displayed_user_id());
+				echo '</div>';
+			} else {
+				echo '<a href="<?php bp_displayed_user_link(); ?>">';
+				echo get_user_display_name(bp_displayed_user_id());
+				echo '</a>';
+			}
+		?>
 	</h2>
 
-	<span class="user-nicename">@<?php bp_displayed_user_username(); ?></span>
-	<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>
+	
+	<!--<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>-->
 
 	<?php do_action( 'bp_before_member_header_meta' ); ?>
 

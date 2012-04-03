@@ -1,4 +1,5 @@
 var denizenSignup;
+var denizenUpdate;
 
 ;(function() {
 
@@ -32,7 +33,8 @@ var denizenSignup;
 	DenizenSignup.prototype.initAutoComplete = function(){
 		$('.signup-school-name').each(function(){
 			$(this).autocomplete({
-				serviceUrl:'/schools/auto_complete_search/',
+				serviceUrl:'/wp-content/scripts/ajax.php/',
+				params:{action:'get_groups_by_name'},
 				onSelect:onSchoolSelect,
 			});
 		});
@@ -50,16 +52,16 @@ var denizenSignup;
 		$('.signup-school-row:visible').each(function(){
 			var row = $(this);
 			var obj = {};
-			obj.school_name = row.find('.signup-school-name').val();
-			obj.school_id = row.find('.signup-school-name').data('id');
+			obj.name = row.find('.signup-school-name').val();
+			obj.id = row.find('.signup-school-name').data('id');
 			obj.year_start = row.find('.signup-school-year-start').val();
 			obj.year_end = row.find('.signup-school-year-end').val();
-			if (obj.school_name || obj.school_id){
+			if (obj.name || obj.id){
 				schools.push(obj);
 			}
 		});
 		trace(schools);
-		$.post('/nomads/schools/add/', {schools:schools}, trace);
+		$.post('/wp-content/scripts/ajax.php', {groups:schools, action:'save_member_groups'}, trace);
 		$.modal.close();
 	}
 	
@@ -70,18 +72,47 @@ var denizenSignup;
 	DenizenSignup.prototype.addSchoolRow = function(){
 		var row = $('.signup-school-row.blank-row').clone();
 		row.removeClass('blank-row hidden');
-		trace($().jQuery);
-		trace($('.signup-school-row:visible'));
 		$('.signup-school-row:visible').last().after(row);
 		row.hide();
 		row.slideDown();
 		THIS.initAutoComplete();
 	}
 	
+	
+	
 	$(document).ready(function(){
 		denizenSignup = new DenizenSignup();
 	});
 
+})();
+
+;(function() {
+
+	var THIS;
+
+	function DenizenUpdate() {
+		THIS = this;
+		this.bindHandlers();
+	}
+	
+	DenizenUpdate.prototype.bindHandlers = function(){
+		$('.trigger-add-school-modal').bind('click', THIS.launchAddSchoolModal);
+		$('.profile-add-school-submit').bind('click', THIS.saveSchool);
+	}
+	
+	DenizenUpdate.prototype.saveSchool = function(e){
+		denizenSignup.sendSignupData(e);
+		location.reload();
+	}
+	
+	DenizenUpdate.prototype.launchAddSchoolModal = function(){
+		$('#add-school-modal').modal();
+	}
+	
+	$(document).ready(function(){
+		denizenUpdate = new DenizenUpdate();
+	});
+	
 })();
 
 function trace(msg){

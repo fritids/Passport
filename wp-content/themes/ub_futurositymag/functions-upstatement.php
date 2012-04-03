@@ -2,6 +2,13 @@
 
 	require_once(ABSPATH . WPINC . '/registration.php');
 
+	function to_slug($str){
+		$str = strtolower(trim($str));
+		$str = preg_replace('/[^a-z0-9-]/', '-', $str);
+		$str = preg_replace('/-+/', "-", $str);
+		return $str;
+	}
+
 	function get_gallery_info($gid){
 		$query = "SELECT * FROM wp_ngg_gallery WHERE gid = '$gid'";
 		$result = mysql_query($query);
@@ -162,10 +169,16 @@
 			return $activities_template->activity;
 		}
 	}
+	
+	function get_comment_info($cid=0){
+		$c = get_comment($cid);
+		return $c;
+	}
 
 	function get_user_info($uid=0){
 		if (!$uid){
 			$user = wp_get_current_user();
+			
 			$uid = $user->ID;
 		}
 		$wpuser = get_userdata($uid);
@@ -187,17 +200,37 @@
 		if ($user->simple_local_avatar){
 			$user->simple_local_avatar = unserialize($user->simple_local_avatar);
 		}
-		$user->slug = $user->user_nicename;
+		$user->slug = $user->nicename;
+		//print_r($user);
+		$user->permalink = '/members/'.$user->user_nicename;
 		$user->fb_image_thumb = 'http://graph.facebook.com/'.$user->fbid.'/picture';
 		$user->fb_image = 'http://graph.facebook.com/'.$user->fbid.'/picture?type=large';
 		//print_r($user);
 		$user->profile_url = '/members/'.$user->user_login.'/profile/';
+		
 		return $user;
 	}	
+	
+	function get_group_info($gid=0){
+		if (!$gid){
+			global $bp;
+			$group = $bp->groups->current_group;
+		} else {
+			$group = groups_get_group(array('group_id' => $gid));
+		}
+		
+		return $group;
+	}
 
 
 	function base64_url_decode($input) {
 	  return base64_decode(strtr($input, '-_', '+/'));
+	}
+	
+	function object_sort(&$array, $prop){
+		usort($array, function($a, $b) use ($prop) {
+			return $a->$prop > $b->$prop ? 1 : -1;
+		}); 
 	}
 
 	

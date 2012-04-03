@@ -14,7 +14,7 @@
 
 <?php do_action( 'bp_before_activity_entry' ); ?>
 
-<li class="<?php bp_activity_css_class(); ?>" id="activity-<?php bp_activity_id(); ?>">
+<li class="profile-activity <?php bp_activity_css_class(); ?>" id="activity-<?php bp_activity_id(); ?>">
 	<div class="activity-avatar">
 		<a href="<?php bp_activity_user_link(); ?>">
 
@@ -33,12 +33,23 @@
 		<div class="activity-header">
 
 			<?php 
-			echo '<h4>'.$act->display_name.'</h4>';
+			echo '<h4><a href="'.$poster->permalink.'">'.$act->display_name.'</a>';
 			//bp_activity_action(); 
-			
+			if ($act->component == 'blogs'){
+				$ci = get_comment_info($act->secondary_item_id);
+				$pi = get_post_info($ci->comment_post_ID);
+				echo ' <span class="activity-action-info"> commented on <a href="'.$act->primary_link.'">'.$pi->post_title.'</a></span>';
+			}
+			if ($act->component == 'groups'){
+				//print_r($act);
+				$gi = get_group_info($act->item_id);
+				echo '<span class="activity-action-info"> added <a href="/schools/'.$gi->slug.'">'.$gi->name.'</a> to their profile</span>';
+			}
+			echo '</h4>';
 			?>
+			
 
-		</div>
+	
 
 		<?php if ( 'activity_comment' == bp_get_activity_type() ) : ?>
 
@@ -55,7 +66,7 @@
 				<?php bp_activity_content_body(); ?>
 
 			</div>
-
+		</div>
 		<?php endif; ?>
 
 		<?php do_action( 'bp_activity_entry_content' ); ?>
@@ -63,31 +74,19 @@
 		<?php if ( is_user_logged_in() ) : ?>
 
 			<div class="activity-meta">
-
+				<div class="activity-meta-actions">
 				<?php if ( bp_activity_can_comment() ) : ?>
 
 					<a href="<?php bp_get_activity_comment_link(); ?>" class="button acomment-reply bp-primary-action" id="acomment-comment-<?php bp_activity_id(); ?>"><?php printf( __( 'Comment <span>%s</span>', 'buddypress' ), bp_activity_get_comment_count() ); ?></a>
 
 				<?php endif; ?>
 
-				<?php if ( bp_activity_can_favorite() ) : ?>
-
-					<?php if ( !bp_get_activity_is_favorite() ) : ?>
-
-						<a href="<?php bp_activity_favorite_link(); ?>" class="button fav bp-secondary-action" title="<?php esc_attr_e( 'Mark as Favorite', 'buddypress' ); ?>"><?php _e( 'Favorite', 'buddypress' ) ?></a>
-
-					<?php else : ?>
-
-						<a href="<?php bp_activity_unfavorite_link(); ?>" class="button unfav bp-secondary-action" title="<?php esc_attr_e( 'Remove Favorite', 'buddypress' ); ?>"><?php _e( 'Remove Favorite', 'buddypress' ) ?></a>
-
-					<?php endif; ?>
-
-				<?php endif; ?>
+				
 
 				<?php if ( bp_activity_user_can_delete() ) bp_activity_delete_link(); ?>
-
+				
 				<?php do_action( 'bp_activity_entry_meta' ); ?>
-
+				</div>
 			</div>
 
 		<?php endif; ?>

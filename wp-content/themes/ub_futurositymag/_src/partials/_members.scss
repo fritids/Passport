@@ -1,0 +1,55 @@
+html div#item-header div#item-header-content {
+	margin-left:0px;
+}
+
+.section-members {
+	#subnav {
+		display:none;
+	}
+	
+	#groups-list {
+		margin-top:20px;
+	}
+	
+	.groups-index-item {
+		width:100%;
+		margin-right:0;
+		
+		.action {
+			display:none;
+		}
+	}
+}	
+
+.member-profile-avatar {
+	width:100%;
+}
+
+.mygroups {
+	.pagination {
+		display:none;
+	}
+	
+	
+}
+
+.profile-add-school {
+	margin: auto;
+	display: block;
+	width: 62%;
+	text-align: center;
+	margin-top: 18px
+}
+
+.profile-activity {
+	@include clearfix;
+}
+
+#whats-new-form {
+	@include clearfix;
+	padding-bottom: 10px;
+	box-shadow: 0 4px 13px -11px black;
+	overflow: hidden;
+	margin-bottom: 10px;
+	min-height: 97px;
+}

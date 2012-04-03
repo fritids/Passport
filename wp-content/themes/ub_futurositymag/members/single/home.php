@@ -7,6 +7,7 @@
  * @subpackage bp-default
  */
 
+
 ?>
 
 <?php get_header( 'buddypress' ); ?>
@@ -16,28 +17,51 @@
 
 			<?php do_action( 'bp_before_member_home_content' ); ?>
 			<div id="item-rail">
-			<div id="item-header" role="complementary">
-
-				<?php locate_template( array( 'members/single/member-header.php' ), true ); ?>
-
-			</div><!-- #item-header -->
-
-			<div id="item-nav">
-				<div class="item-list-tabs no-ajax" id="object-nav" role="navigation">
-					<ul>
-
-						<?php bp_get_displayed_user_nav(); ?>
-
-						<?php do_action( 'bp_member_options_nav' ); ?>
-
-					</ul>
-				</div>
-			</div><!-- #item-nav -->
-
-			<div id="item-body">
+				<div id="item-avatar" role="complementary">
+	
+					<?php 
+					
+						locate_template( array( 'members/single/member-avatar.php' ), true ); 
+						locate_template( array( 'members/single/groups.php'    ), true );
+						
+						if (bp_displayed_user_id() == get_current_user_id()){
+							echo '<a href="#" class="trigger-add-school-modal button-large profile-add-school">Add a School</a>';	
+							echo '<div id="add-school-modal" class="modal modal-style-medium">';
+							echo '<form>';
+							locate_template(array('partials/add-school-row.php'), true);
+							echo '<input type="submit" class="prevent-default button-large profile-add-school-submit" value="Add School" />';
+							echo '</form>';
+							echo '</div>';
+						}
+						
+					?>
+						
+				</div><!-- #item-header -->
+				<div id="item-nav">
+					<div class="item-list-tabs no-ajax" id="object-nav" role="navigation">
+						<ul>
+	
+							<?php //bp_get_displayed_user_nav(); ?>
+	
+							<?php do_action( 'bp_member_options_nav' ); ?>
+	
+						</ul>
+					</div>
+				</div><!-- #item-nav -->
+			</div>
+			<div id="item-main">
+				
+				<div id="item-header" role="complementary">
+	
+					<?php locate_template( array( 'members/single/member-header.php' ), true ); ?>
+	
+				</div><!-- #item-header -->
 
 				<?php do_action( 'bp_before_member_body' );
-
+				locate_template( array( 'members/single/activity.php'  ), true );
+				locate_template(array('members/single/comments.php'), true);
+				
+				/*
 				if ( bp_is_user_activity() || !bp_current_component() ) :
 					locate_template( array( 'members/single/activity.php'  ), true );
 
@@ -67,7 +91,7 @@
 					locate_template( array( 'members/single/plugins.php'   ), true );
 
 				endif;
-
+				*/
 				do_action( 'bp_after_member_body' ); ?>
 
 			</div><!-- #item-body -->

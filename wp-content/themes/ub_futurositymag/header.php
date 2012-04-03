@@ -3,7 +3,6 @@
 <head profile="http://gmpg.org/xfn/11">
 	<title><?php bloginfo('name'); if ( is_404() ) : _e(' &raquo; ', 'sandbox'); _e('Not Found', 'sandbox'); elseif ( is_home() ) : _e(' &raquo; ', 'sandbox'); bloginfo('description'); else : wp_title(); endif; ?></title>
 	<meta http-equiv="content-type" content="<?php bloginfo('html_type') ?>; charset=<?php bloginfo('charset') ?>" />
-	<script type="text/javascript" src="/wp-content/scripts/jquery.min.js"></script>
 	<?php if (!is_home()) { 
 		echo '<meta property="og:title" content="'.get_the_title().'"/>';
 	}
@@ -27,10 +26,24 @@
 
 
 <?php wp_head() ?>
+<script type="text/javascript">
+	$ = jQuery;
+</script>
 </head>
 
-<body class="<?php sandbox_body_class(bp_get_the_body_class()) ?>">
+<?php
+	$section = explode('/', $_SERVER['REQUEST_URI']);
+	$section = $section[1];
+	
+	$user = 'public';
+	if (get_user_info()->ID){
+		$user = get_user_info()->user_nicename;
+	}
 
+
+
+	echo '<body class="'.implode(' ', bp_get_the_body_class()) . ' ' .'section-'.$section.' user-'.$user.'">';
+?>
 <div id="wrapper" class="hfeed">
 
 	<div id="header">
@@ -40,15 +53,31 @@
 	<div id="blog-description"></div>
 	<?php include (TEMPLATEPATH . '/searchform.php'); ?>
 	
-		
-	<div id="profile-tools">
-		<span class="network">Denizen Network</span>
-		<ul class="tools">
-		<li><a href="/members/<?php echo get_user_info()->slug; ?>/profile/public/">My Profile</a></li>
-		<li><a href="/schools/">Schools</a></li>
-		<li>Sign Out </li>
-		</ul>
-	</div>
+	<?php
+		if (is_user_logged_in()){
+			echo '<div id="profile-tools">';
+			echo '<span class="network">Denizen Network</span>';
+			echo '<ul class="tools">';
+			echo '<li><a href="'.get_user_info()->permalink.'">My Profile</a></li>';
+			echo '<li><a href="/schools/">Schools</a></li>';
+			echo '<li><a href="'.wp_logout_url( home_url() ).'">Sign Out</a></li>';
+			echo '</ul>';
+			echo '</div>';
+			
+			$group_count = groups_total_groups_for_user(get_current_user_id());
+			if (!$group_count){
+				include('partials/nomad-nag.php');
+			} else {
+				//echo $group_count;
+			}
+		} else {
+			echo '<div id="login-tools">';
+			echo '<ul>';
+			echo '<li><a href="#" class="trigger-facebook-login">Login with Facebook</a></li>';
+			echo '</ul>';
+			echo '</div>';
+		}
+	?>
 	
 	<ul id="pages">
 <?php //wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
@@ -62,5 +91,5 @@
 
 	
 	<?php
-		include('partials/nomad-nag.php');
+		
 	?>

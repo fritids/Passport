@@ -14,7 +14,6 @@
 	<?php do_action( 'bp_before_directory_groups_page' ); ?>
 
 	<div id="content">
-		<div class="padder">
 
 		<?php do_action( 'bp_before_directory_groups' ); ?>
 
@@ -80,7 +79,6 @@
 
 		<?php do_action( 'bp_after_directory_groups' ); ?>
 
-		</div><!-- .padder -->
 	</div><!-- #content -->
 
 	<?php do_action( 'bp_after_directory_groups_page' ); ?>

@@ -63,8 +63,44 @@ em {
 
 /* ============================================= */
 
+.section-header {
+	font-family:$display-serif;
+	font-size:38px;
+}
 
+.text-oversize {
+	font-family:$serif;
+	font-size:15px;
+	line-height:20px;
+}
 
+#item-header-content, html div#item-header h2 {
+	@extend .section-header;
+}
+
+html #content ul.item-list.activity-list li {
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+html {
+	div.activity-meta a {
+		font-family:$sans;
+		padding: 0px 11px;
+		font-size:10px;
+	}
+
+	div.activity-comments form {
+	
+		.ac-textarea {
+			border: 0px;
+			padding: 0px;
+		}
+		textarea.ac-input {
+			padding:15px;
+		}
+	}
+}
 
 
 
@@ -74,7 +110,17 @@ em {
 
 /* ! ============================================= */
 
+html body {
+	padding-top: 0px !important; 
+}
 
+body.user-admin #wp-admin-bar {
+	display:block;
+}
+
+body #wp-admin-bar {
+	display:none;
+}
 
 
 
@@ -97,8 +143,19 @@ em {
 
 /* ! ============================================= */
 
+html  {
 
+	ul.latest {
+		width:160px;
+	}
+	
+	.home-thumb, .home-thumb img {
+		display:block;
+		width:145px;
+		box-sizing:border-box;
+	}
 
+}
 
 /* ! ============================================= */
 
@@ -112,15 +169,20 @@ em {
 
 .modal {
 	display:none;
-}	
-
-.modal-style-large {
 	background-color:rgba(white, .95);
 	border:5px solid rgba($gray-dark, .5);
 	border-radius:10px;
+	@include box-shadow(0px 0px 15px rgba(black, .3));
+}	
+
+.modal-style-large {
 	min-width:900px;
 	min-height:400px;
-	@include box-shadow(0px 0px 15px rgba(black, .3));
+}
+
+.modal-style-medium {
+	min-width:600px;
+	min-height:300px;
 }
 
 #modal-signup-scrollable {
@@ -228,7 +290,7 @@ em {
 @import "partials/print";
 
 .blog-title {
-	font-family: Georgia, Times, "Times New Roman", serif;
+	font-family:$display-serif;
 	font-size: 60pt;
 	display: block;
 	margin-top: 30px;
@@ -307,6 +369,37 @@ em {
 	
 }
 
+/* SCHOOLS INDEX */
+
+.schools-directory-header {
+	@extend .section-header;
+}
+
+#groups-directory-form {
+	@include clearfix;
+	margin-bottom:40px;
+}
+
+#group-dir-search {
+	width:320px;
+}
+
+#groups-list {
+	@include clearfix;
+}
+
+.groups-index-item {
+	float:left;
+	width:30%;
+	margin-right:5%;
+	&:nth-child(3) {
+		margin-right:0;
+	}
+	
+	.activity {
+		display:none;
+	}	
+}
 
 /* SCHOOLS PROFILES */
 #item-body {
@@ -317,7 +410,7 @@ em {
 	width:25%;
 	float:left;
 	min-height:100px;
-	
+	margin-right:5%;
 	.school-members-rail {
 		img {
 			width:50px;
@@ -326,8 +419,8 @@ em {
 	}
 }
 #item-main {
-	width:75%;
-	float:left
+	float:left;
+	width: 70%;
 }
 
 /* Activity */
@@ -335,3 +428,29 @@ em {
 body form#whats-new-form textarea {
 	height:30px;
 }
+
+.activity-header h4 {
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-bottom:3px;
+}
+
+html .activity-list .activity-content .activity-inner {
+	padding-top:0px;
+	margin-top:0px;
+}
+
+html div.activity-meta {
+	padding-top:0px;
+	margin-top:0px;
+}
+
+.activity-inner, .activity-inner p {
+	font-size: 13px;
+	color: #444;
+}
+
+/* Member Profiles */
+@import "partials/members";
+@import "partials/groups";
+@import "partials/site";

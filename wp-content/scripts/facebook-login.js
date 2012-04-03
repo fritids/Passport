@@ -15,7 +15,8 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.launchFacebookLogin = function(e){
-		FB.login(THIS.onFacebookLogin, {scope:'email, publish_stream, '});
+		e.preventDefault();
+		FB.login(THIS.onFacebookLogin, {scope:'email, publish_stream'});
 	};
 	
 	FacebookLogin.prototype.onFacebookLogin = function(response){
@@ -38,6 +39,7 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.onWordPressLogin = function(data){
+		trace(data);
 		if (data == 'success'){
 			window.location = window.location;
 		}

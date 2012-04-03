@@ -13,7 +13,7 @@ AUTHOR URI: http://www.upstartblogger.com/
 #comments-list,#trackbacks-list{clear:both;font-size:18px;}
 #content{display:inline;float:left;width:960px;}
 #content li.list-time{font-size:9px;font-variant:small-caps;text-transform:uppercase;}
-#content ul li{list-style-type:none;margin:0;padding:0;}
+#content ul li{list-style-type:none;}
 #content ul li.list-title{font-family:Georgia, Georgia, serif;font-size:12px;font-weight:700;line-height:14px;padding:0 0 2px;}
 #footer{border-top:1px solid silver;clear:both;display:inline;float:left;font-size:10px;margin-top:100px;padding:10px 0 25px;width:945px;}
 #header{height:75px;margin:20px 0;width:945px;}

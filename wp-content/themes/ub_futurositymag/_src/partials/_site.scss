@@ -1,0 +1,33 @@
+html {
+	.left-col {
+		width:30%;
+		margin-right:5%;
+	}
+	
+	.hentry {
+		width:65%;
+		float:left;
+	}
+	
+	#comments {
+		width:auto;
+	}
+	
+	li.comment, #trackbacks-list ol li {
+		width:auto;
+	}
+	
+	.comment-meta, #trackbacks-list .comment-author {
+		width:auto;
+	}
+	
+	.comment-user-thumb {
+		float:left;
+		margin-right:10px;
+	}
+	
+	.comment-submit {
+		float:right;
+		margin-top:10px;
+	}
+}

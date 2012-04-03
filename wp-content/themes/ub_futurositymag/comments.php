@@ -44,7 +44,17 @@ foreach ( $comments as $comment )
 <?php foreach ($comments as $comment) : ?>
 <?php if ( get_comment_type() == "comment" ) : ?>
 						<li id="comment-<?php comment_ID() ?>" class="<?php sandbox_comment_class() ?>">
-							<div class="comment-meta"><span class="fn n"><?php comment_author_link() ?></span> <?php printf(__('added these pithy words on %1$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this comment">Permalink</a>', 'sandbox'),
+							<div class="comment-meta"><span class="fn n"><?php
+								//print_r($comment);
+								$ui = get_user_info($comment->user_id);
+								//print_r($ui);
+								echo '<a href="'.$ui->permalink.'" class="comment-user-thumb">';
+								echo '<img src="'.$ui->fb_image_thumb.'" />';
+								echo '</a>';
+								echo '<a href="'.$ui->permalink.'">';
+								echo get_user_display_name();
+								echo '</a>';
+							?></span> <?php printf(__('said on %1$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this comment">Permalink</a>', 'sandbox'),
 										get_comment_date(),
 										get_comment_time(),
 										'#comment-' . get_comment_ID() );
@@ -122,7 +132,7 @@ foreach ( $comments as $comment )
 							<div class="form-label"><label for="comment"><?php _e('Comment', 'sandbox') ?></label></div>
 							<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
 							<div class="form-submit">
-								<input name="submit" type="submit" style="width: 74px; height:24px;padding:12px 0;" src="<?php bloginfo('template_url'); ?>/images/speak.png" id="submit" tabindex="5" value="Submit Comment" />
+								<input name="submit" type="submit" class="comment-submit button-large" id="submit" tabindex="5" value="Submit Comment" />
 <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" /></div>
 
 							<?php do_action('comment_form', $post->ID); ?>
