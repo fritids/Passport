@@ -5,7 +5,7 @@
 	<form>
 		<section id="modal-signup-scrollable">
 			<div class="items">
-				<article id="modal-screen-signup-schools" class="poo">
+				<article id="modal-screen-signup-schools" class="">
 					
 						<?php
 							include('add-school-row.php');

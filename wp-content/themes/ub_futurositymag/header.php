@@ -73,7 +73,7 @@
 		} else {
 			echo '<div id="login-tools">';
 			echo '<ul>';
-			echo '<li><a href="#" class="trigger-facebook-login">Login with Facebook</a></li>';
+			echo '<li class="facebook-button-li"><a href="#" class="trigger-facebook-login facebook-button">Login with Facebook</a></li>';
 			echo '</ul>';
 			echo '</div>';
 		}
