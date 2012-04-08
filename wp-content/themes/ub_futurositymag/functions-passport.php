@@ -1,4 +1,16 @@
 <?php
+	function get_group_members($gid){
+		$admins = groups_get_group_admins($gid);
+		$members = groups_get_group_members($gi);
+		$members = $members['members'];
+		if (count($members)){
+			$members = array_merge($members, $admins);
+		} else {
+			$members = $admins;
+		}
+		return $members;
+	}
+
 	function add_group_membermeta($gid, $key, $val, $uid=0){
 		global $wpdb;
 		if (!$uid || $uid == 0){

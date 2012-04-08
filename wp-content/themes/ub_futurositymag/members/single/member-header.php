@@ -15,19 +15,19 @@
 
 <div id="item-header-content">
 
-	<h2>
+	
 		<?php
 			if (bp_displayed_user_id() == get_current_user_id()){
-				echo '<div class="content-editable" data-field="display_name" data-table="users" contenteditable="true">';
+				echo '<h2 class="content-editable" data-field="display_name" data-table="users" contenteditable="true">';
 				echo get_user_display_name(bp_displayed_user_id());
-				echo '</div>';
+				echo '</h2>';
 			} else {
-				echo '<a href="<?php bp_displayed_user_link(); ?>">';
+				echo '<h2><a href="<?php bp_displayed_user_link(); ?>">';
 				echo get_user_display_name(bp_displayed_user_id());
-				echo '</a>';
+				echo '</a></h2>';
 			}
 		?>
-	</h2>
+	
 
 	
 	<!--<span class="activity"><?php bp_last_activity( bp_displayed_user_id() ); ?></span>-->

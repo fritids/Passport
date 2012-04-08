@@ -1,6 +1,11 @@
 <div id="modal-signup" class="modal modal-style-large">
 	<article id="modal-welcome">
-	
+		<?php
+			$user = get_user_info();
+			//print_r($user);
+			echo '<h2>Hello '.$user->first_name.'</h2>';
+		?>
+		<h3>Welcome to the Denizen Network</h3>
 	</article>
 	<form>
 		<section id="modal-signup-scrollable">
@@ -12,7 +17,7 @@
 						?>
 						
 						<a href="#" class="trigger-add-school-row add-school-row ">
-							Add another school
+							Add another international school
 						</a>
 						
 						

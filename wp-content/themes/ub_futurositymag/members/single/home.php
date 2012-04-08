@@ -1,5 +1,4 @@
 <?php
-
 /**
  * BuddyPress - Users Home
  *
@@ -28,7 +27,7 @@
 							echo '<a href="#" class="trigger-add-school-modal button-large profile-add-school">Add a School</a>';	
 							echo '<div id="add-school-modal" class="modal modal-style-medium">';
 							echo '<form>';
-							locate_template(array('partials/add-school-row.php'), true);
+							include($_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/ub_futurositymag/partials/add-school-row.php');
 							echo '<input type="submit" class="prevent-default button-large profile-add-school-submit" value="Add School" />';
 							echo '</form>';
 							echo '</div>';

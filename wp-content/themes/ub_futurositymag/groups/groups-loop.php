@@ -35,12 +35,13 @@
 	<?php do_action( 'bp_before_directory_groups_list' ); ?>
 
 	<ul id="groups-list" class="item-list" role="main">
-
-	<?php while ( bp_groups() ) : bp_the_group(); ?>
-		<?php
-			global $groups_template;
-		?>
+	
+	<?php 
+		global $groups_template;
+		$i = 0;
+		while ( bp_groups() ) : bp_the_group(); ?>
 		<li class="groups-index-item">
+			<!--
 			<div class="item-avatar">
 				<a href="<?php bp_group_permalink(); ?>"><?php bp_group_avatar( 'type=thumb&width=50&height=50' ); ?></a>
 			</div>
@@ -64,9 +65,22 @@
 
 				</div>
 
-			</div>
+			</div>-->
+			<?php
+				//print_r($groups_template);
+				$group = $groups_template->groups[$i];
+				echo '<h2>'.$group->name.'</h2>';
+				$members = get_group_members($group->id);
+				foreach($members as $m){
+					$member = get_user_info($m->user_id);
+					//print_r($member);
+					echo '<li><a href="'.$member->permalink.'"><img src="'.$member->fb_image_thumb.'" /></a></li>';
+				}
+			?>
 		</li>
-
+	<?php
+		$i++;
+	?>
 	<?php endwhile; ?>
 
 	</ul>

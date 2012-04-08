@@ -183,13 +183,15 @@
 		}
 		$wpuser = get_userdata($uid);
 		$user = new stdClass();
-		foreach($wpuser as $key => $val){
-			$user->$key = $val;
-		}
-		foreach($wpuser->data as $key => $val){
-			$user->$key = $val;
-		}
+		if ($wpuser){
+			foreach($wpuser as $key => $val){
+				$user->$key = $val;
+			}
 		
+			foreach($wpuser->data as $key => $val){
+				$user->$key = $val;
+			}
+		}
 		global $wpdb;
 		$meta = $wpdb->get_results("SELECT * FROM $wpdb->usermeta WHERE user_id = $uid");
 		foreach($meta as $md){

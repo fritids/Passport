@@ -18,6 +18,8 @@
 		global $wpdb;
 		$query = "UPDATE $wpdb->users SET display_name = '$fname' WHERE ID = $user_id LIMIT 1";
 		$result = $wpdb->get_row($query);
+		$query = "UPDATE $wpdb->users SET user_nicename = '$user_id' WHERE ID = $user_id LIMIT 1";
+		$result = $wpdb->get_row($query);
 	} 
 	if ($user_id){
 		update_user_meta($user_id, 'first_name', $user->first_name);
