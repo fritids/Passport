@@ -352,7 +352,7 @@ html  {
 
 #profile-tools {
 	float: right; 
-	margin-top: -65px;
+	margin-top: -8px;
 
 	
 	.network {
@@ -501,6 +501,11 @@ textarea#whats-new {
 }
 
 #header {
+	@include clearfix;
+	min-height:75px;
+	height:auto;
+	margin-top:0px;
+	padding-top:17px;
 	h1 {
 		float:left;
 	}
