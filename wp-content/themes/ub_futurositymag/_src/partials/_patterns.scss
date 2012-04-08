@@ -400,19 +400,27 @@ $btn-style: light !default;
 
 	}
 
-@mixin btn-dark {
+@mixin btn-dark($color:#028ed4) {
 	color: #fff;
-	border-color: #0064cd #0064cd #003f81;
+	$hue: hue($color);
+	$sat: saturation($color);
+	$lgt: lightness($color);
+	
+	$color-dark: hsl($hue + 6, $sat + 1, $lgt - 3);
+	$color-darker: hsl($hue + 6, $sat + 1, $lgt - 30);
+	$color-light: hsl($hue - 6, $sat - 1, $lgt + 3);
+	
+	border-color: $color-dark $color-dark $color-darker;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	
-	background-color: #0064cd;
+	background-color: $color;
 	background-repeat: repeat-x;
-	@include background-image(linear-gradient(top, #049cdb, #0064cd));
+	@include background-image(linear-gradient(top, $color-light, $color-dark));
 	@include text-shadow(rgba(0, 0, 0, 0.25) 0 -1px 0);
 	}
 
 
 // Mixin used to create any combination of button sizes and styles
-@mixin btn($btn-size, $btn-style) {
+@mixin btn($btn-size, $btn-style, $color:#028ed4) {
 	@include btn-basic;
 
 	// Define button sizes & definitions
@@ -432,7 +440,7 @@ $btn-style: light !default;
 		@include btn-light;
 		}
 	@if $btn-style == "dark" or $btn-style == "dk" {
-		@include btn-dark;
+		@include btn-dark($color);
 		}
 	} // end btn
 	

@@ -488,7 +488,7 @@ textarea#whats-new {
 
 #aw-whats-new-submit {
 
-	@include btn(medium, light);
+	@include btn(medium, light); 
 }
 
 .activity-inner, .activity-inner p {
@@ -500,8 +500,15 @@ textarea#whats-new {
 	font-size:14px;
 }
 
+#header {
+	h1 {
+		float:left;
+	}
+}
+
 #login-tools {
 	float:right;
+	margin-top:36px;
 }
 
 .facebook-button-li {
@@ -509,7 +516,7 @@ textarea#whats-new {
 }
 
 .facebook-button, a.facebook-button:link{
-	@include btn-dark;
+	@include btn-dark(hsl(360,73%,55%));
 	color:white;
 	display:block;
 	padding:10px 3px;
