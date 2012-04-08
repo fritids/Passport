@@ -34,7 +34,7 @@ $gi = get_group_info();
 
 
 <div id="item-header-content">
-	<h2 class="section-header"><a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>"><?php bp_group_name(); ?></a><span class="activity"><?php printf( __( 'Updated %s', 'buddypress' ), bp_get_group_last_active() ); ?></span></h2>
+	<h2 class="section-header"><a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>"><?php bp_group_name(); ?></a><!--<span class="activity"><?php printf( __( 'Updated %s', 'buddypress' ), bp_get_group_last_active() ); ?></span>--></h2>
 	<!--<span class="highlight"><?php bp_group_type(); ?></span> -->
 	
 

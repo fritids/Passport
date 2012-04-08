@@ -10,7 +10,7 @@
 	<meta name="description" content="<?php bloginfo('description') ?>" />
 	<meta name="generator" content="WordPress <?php bloginfo('version') ?>" /><!-- Please leave for stats -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_directory'); ?>/_css/screen.css" />
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/ub_futurositymag/_css/screen.css" />
 	<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" />
 	<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Comments RSS feed', 'sandbox'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
@@ -42,7 +42,7 @@
 
 
 
-	echo '<body class="'.implode(' ', bp_get_the_body_class()) . ' ' .'section-'.$section.' user-'.$user.'">';
+	echo '<body class="'.implode(' ', bp_get_the_body_class(get_body_class())) . ' ' .'section-'.$section.' user-'.$user.'">';
 ?>
 <div id="wrapper" class="hfeed">
 
@@ -79,9 +79,11 @@
 		}
 	?>
 	
-	<ul id="pages">
-<?php //wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
-				</ul>
+	<div id="pages">
+<?php 
+wp_nav_menu();
+//wp_list_pages('title_li=&sort_column=post_title&sort_order=desc&depth=1' ) ?>
+				</div>
 	</div><!--  #header -->
 
 	<div id="access">

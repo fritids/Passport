@@ -9,11 +9,17 @@ var passport;
 	Passport.prototype.bindHandlers = function() {
 		$('.content-editable').bind('blur', this.onContentEditableEdited);
 		$('a[href="#"]').bind('click', this.preventDefault);
+		$('#whats-new').bind('focus', this.onActivityFocus);
+		$('#aw-whats-new-submit').hide();
 	};
 	
 	Passport.prototype.preventDefault = function(e){
 		e.preventDefault();
 	}	
+	
+	Passport.prototype.onActivityFocus = function(e){
+		$('#aw-whats-new-submit').fadeIn();
+	}
 	
 	Passport.prototype.onContentEditableEdited = function(e){
 		var field = $(this).data('field');
