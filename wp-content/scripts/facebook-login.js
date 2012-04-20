@@ -52,6 +52,7 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.onFacebookLogin = function(response){
+		$('#message-center').addClass('show');
 		if (response.authResponse){
 			//success
 			FB.api('/me', THIS.onFacebookData);

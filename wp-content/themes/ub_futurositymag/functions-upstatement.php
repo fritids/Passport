@@ -50,6 +50,16 @@
 		return $src;
 	}
 
+	function get_resized_image($src, $w, $h = 0){
+		if (isset($w) && $h == 0){
+			$base = basename($src);
+			$src = '/wp-content/image.php/'.$base.'?image='.$src.'&amp;width='.$w;
+		} else if (isset($w) && isset($h)){
+			$base = basename($src);
+			$src = '/wp-content/image.php/'.$base.'?image='.$src.'&amp;width='.$w.'&amp;height='.$h.'&amp;cropratio='.$w.':'.$h;
+		}
+		return $src;
+	}
 	
 	function get_post_info($pid = 0){
 		if ($pid == 0){
@@ -213,17 +223,7 @@
 		return $user;
 	}	
 	
-	function get_group_info($gid=0){
-		if (!$gid){
-			global $bp;
-			$group = $bp->groups->current_group;
-		} else {
-			$group = groups_get_group(array('group_id' => $gid));
-		}
-		
-		return $group;
-	}
-
+	
 
 	function base64_url_decode($input) {
 	  return base64_decode(strtr($input, '-_', '+/'));

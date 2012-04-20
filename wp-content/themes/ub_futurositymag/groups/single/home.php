@@ -33,7 +33,20 @@
 				<div id="item-header-avatar">
 	<a href="<?php bp_group_permalink(); ?>" title="<?php bp_group_name(); ?>">
 
-		<?php bp_group_avatar(array('class'=>'group-profile-avatar')); ?>
+		<?php 
+		$gi = get_group_info();
+		$classes = '';
+		if (passport_is_user_admin()){
+			$classes .= ' trigger-drag-upload';
+			echo '<input id="fileupload" type="file" name="files[]" data-url="server/php/">';
+		} else {
+			$cu = get_user_info();
+			print_r($cu);
+		}	
+		echo '<img src="'.$gi->avatar.'" class="'.$classes.'"/>';
+		//bp_group_avatar(array('class'=>'group-profile-avatar')); 
+		
+		?>
 
 	</a>
 </div><!-- #item-header-avatar -->
@@ -44,45 +57,54 @@
 				}	
 				echo '</section>';
 				echo '<section id="item-main">';
+				
 				locate_template( array( 'groups/single/group-header.php' ), true );
-				if ( bp_is_group_admin_page() && bp_group_is_visible() ) :
-					locate_template( array( 'groups/single/admin.php' ), true );
-
-			
-
-				elseif ( bp_is_group_invites() && bp_group_is_visible() ) :
-					locate_template( array( 'groups/single/send-invites.php' ), true );
-
-					elseif ( bp_is_group_forum() && bp_group_is_visible() && bp_is_active( 'forums' ) && bp_forums_is_installed_correctly() ) :
-						locate_template( array( 'groups/single/forum.php' ), true );
-
-				elseif ( bp_is_group_membership_request() ) :
-					locate_template( array( 'groups/single/request-membership.php' ), true );
-
-				elseif ( bp_group_is_visible()) :
-					locate_template( array( 'groups/single/activity.php' ), true );
-
-				elseif ( bp_group_is_visible() ) :
-					locate_template( array( 'groups/single/members.php' ), true );
-
-				elseif ( !bp_group_is_visible() ) :
-					// The group is not visible, show the status message
-
-					do_action( 'bp_before_group_status_message' ); ?>
-
-					<div id="message" class="info">
-						<p><?php bp_group_status_message(); ?></p>
-					</div>
-
-					<?php do_action( 'bp_after_group_status_message' );
-
-				else :
-					// If nothing sticks, just load a group front template if one exists.
-					locate_template( array( 'groups/single/front.php' ), true );
-
-				endif;
-
-				do_action( 'bp_after_group_body' ); ?>
+				
+				if (get_current_user_id()){
+					if ( bp_is_group_admin_page() && bp_group_is_visible() ) :
+						locate_template( array( 'groups/single/admin.php' ), true );
+	
+				
+	
+					elseif ( bp_is_group_invites() && bp_group_is_visible() ) :
+						locate_template( array( 'groups/single/send-invites.php' ), true );
+	
+						elseif ( bp_is_group_forum() && bp_group_is_visible() && bp_is_active( 'forums' ) && bp_forums_is_installed_correctly() ) :
+							locate_template( array( 'groups/single/forum.php' ), true );
+	
+					elseif ( bp_is_group_membership_request() ) :
+						locate_template( array( 'groups/single/request-membership.php' ), true );
+	
+					elseif ( bp_group_is_visible()) :
+						locate_template( array( 'groups/single/activity.php' ), true );
+						locate_template( array( 'groups/single/posts.php' ), true );
+					
+	
+					elseif ( bp_group_is_visible() ) :
+						locate_template( array( 'groups/single/members.php' ), true );
+	
+					elseif ( !bp_group_is_visible() ) :
+						// The group is not visible, show the status message
+	
+						do_action( 'bp_before_group_status_message' ); ?>
+	
+						<div id="message" class="info">
+							<p><?php bp_group_status_message(); ?></p>
+						</div>
+	
+						<?php do_action( 'bp_after_group_status_message' );
+	
+					else :
+						// If nothing sticks, just load a group front template if one exists.
+						locate_template( array( 'groups/single/front.php' ), true );
+	
+					endif;
+	
+					do_action( 'bp_after_group_body' ); 
+					} else {
+						echo '<a href="#" class="notification-tease trigger-facebook-login">Did you attend this school? Sign-up for Denizen now to join!</a>';
+					}
+					?>
 				</section><!-- #item-main -->
 			</div><!-- #item-body -->
 

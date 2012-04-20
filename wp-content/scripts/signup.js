@@ -5,19 +5,27 @@ var denizenUpdate;
 
 	var THIS;
 	var lastInput;
-	var scrollable;
 	
 	function DenizenSignup() {
 		THIS = this;
 		this.bindHandlers();
+		this.init();
 	}
+   
+   	DenizenSignup.prototype.init = function(){
+   		THIS.scrollable = $('#modal-signup-scrollable').scrollable({api:true});
+   	}
    
 	DenizenSignup.prototype.bindHandlers = function() {
 		if ($('#modal-signup').length){
 			$('#modal-signup').modal();
 		}
 		$('.trigger-add-school-row').bind('click', THIS.addSchoolRow);
-		$('.trigger-signup-complete').bind('click', THIS.sendSignupData);
+		$('.trigger-signup-complete').bind('click', function(e){
+			e.preventDefault();
+			THIS.sendSignupData();
+			THIS.scrollable.next();
+		});
 		$('.trigger-signup-cancel').bind('click', THIS.closeSignup);
 		$('.signup-school-name').live('click', function(){
 			lastInput = $(this);
@@ -47,7 +55,6 @@ var denizenUpdate;
 	};
 	
 	DenizenSignup.prototype.sendSignupData = function(e){	
-		e.preventDefault();
 		var schools = new Array();
 		$('.signup-school-row:visible').each(function(){
 			var row = $(this);
@@ -62,7 +69,7 @@ var denizenUpdate;
 		});
 		trace(schools);
 		$.post('/wp-content/scripts/ajax.php', {groups:schools, action:'save_member_groups'}, trace);
-		$.modal.close();
+		
 	}
 	
 	DenizenSignup.prototype.onSignup = function(data){
@@ -76,6 +83,17 @@ var denizenUpdate;
 		row.hide();
 		row.slideDown();
 		THIS.initAutoComplete();
+		//#modal-signup-scrollable
+		//#modal-screen-signup-schools
+		var slideHeight = $('#modal-screen-signup-schools').outerHeight() + 40;
+		var containerHeight = $('#modal-signup-scrollable').height();
+		if (slideHeight > containerHeight){
+			console.log('resize!');
+			$('#modal-signup-scrollable').css('min-height', slideHeight);
+			$(window).trigger('resize');
+			$('#simplemodal-container').css('top', '40px');
+		}
+		
 	}
 	
 	

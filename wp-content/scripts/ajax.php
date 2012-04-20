@@ -62,11 +62,13 @@
 		$data = $_REQUEST['data'];
 		if ($uid){
 			$updates =  array ('ID' => $uid, $field => $data);
-			print_r($updates);
-			wp_update_user($updates);
+			//print_r($updates);
+			//wp_update_user($updates);
+			update_user_meta($uid, $field, $data);
 		} else {
 			echo 'Who are you, '.$uid.'?';
 		}
+		exit;
 	}
 
 ?>

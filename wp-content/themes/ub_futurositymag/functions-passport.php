@@ -1,4 +1,32 @@
 <?php
+	
+	function get_group_info($gid=0){
+		//$groups_template->group->avatar_thumb
+		if (!$gid){
+			global $bp;
+			$group = $bp->groups->current_group;
+		} else {
+			$group = groups_get_group(array('group_id' => $gid));
+		}
+		$group->permalink = '/schools/'.$group->slug;
+		if (!$group->avatar){
+			$group->avatar = THEME.'images/school-avatar.jpg';
+		}
+		return $group;
+	}
+	
+	function get_group_posts($gid = 0){
+		global $wpdb;
+		$query = "SELECT post_id FROM wp_0dusy5_bp_groups_posts WHERE group_id = $gid";
+		$pids = $wpdb->get_col($query);
+		$posts = array();
+		foreach($pids as $pid){
+			$posts[] = get_post_info($pid);
+		}
+		return $posts;
+	}
+
+
 	function get_group_members($gid){
 		$admins = groups_get_group_admins($gid);
 		$members = groups_get_group_members($gi);
@@ -9,6 +37,24 @@
 			$members = $admins;
 		}
 		return $members;
+	}
+	
+	function user_is_member($gid){
+		/*function groups_is_user_admin( $user_id, $group_id ) {
+	return BP_Groups_Member::check_is_admin( $user_id, $group_id );
+}
+
+function groups_is_user_mod( $user_id, $group_id ) {
+	return BP_Groups_Member::check_is_mod( $user_id, $group_id );
+}
+
+function groups_is_user_member( $user_id, $group_id ) {
+	return BP_Groups_Member::check_is_member( $user_id, $group_id );
+}
+
+function groups_is_user_banned( $user_id, $group_id ) {
+	return BP_Groups_Member::check_is_banned( $user_id, $group_id );
+}*/
 	}
 
 	function add_group_membermeta($gid, $key, $val, $uid=0){
@@ -25,7 +71,7 @@
 		$wpdb->query($query);
 	}
 	
-	function get_group_member_info($gid, $uid){
+	function get_group_member_info($uid = 0, $gid = 0){
 		global $wpdb;
 		if (!$uid || $uid == 0){
 			$user = wp_get_current_user();
@@ -42,6 +88,21 @@
 			$obj->$key = $val;
 		}
 		return $obj;
+	}
+	
+	function passport_is_user_admin(){
+		$cu = get_user_info();
+		if ($cu->caps['administrator'] == 1){
+			return true;
+		}
+		return false;
+	}	
+	
+	function user_is_owner(){
+		if (bp_displayed_user_id() == get_current_user_id()){
+			return true;
+		}
+		return false;
 	}
 	
 	function get_user_display_name($uid=0){

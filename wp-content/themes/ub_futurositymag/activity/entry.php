@@ -38,7 +38,7 @@
 			if ($act->component == 'blogs'){
 				$ci = get_comment_info($act->secondary_item_id);
 				$pi = get_post_info($ci->comment_post_ID);
-				echo ' <span class="activity-action-info"> commented on <a href="'.$act->primary_link.'">'.$pi->post_title.'</a></span>';
+				echo ' <span class="activity-action-info"> commented on <a href="'.$pi->permalink.'">'.$pi->post_title.'</a></span>';
 			}
 			if ($act->component == 'groups'){
 				//print_r($act);

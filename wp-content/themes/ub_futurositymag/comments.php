@@ -52,13 +52,13 @@ foreach ( $comments as $comment )
 								echo '<img src="'.$ui->fb_image_thumb.'" />';
 								echo '</a>';
 								echo '<a href="'.$ui->permalink.'">';
-								echo get_user_display_name();
+								echo get_user_display_name($comment->user_id);
 								echo '</a>';
 							?></span> <?php printf(__('said on %1$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this comment">Permalink</a>', 'sandbox'),
 										get_comment_date(),
 										get_comment_time(),
 										'#comment-' . get_comment_ID() );
-										edit_comment_link(__('Edit', 'sandbox'), ' <span class="meta-sep">|</span> <span class="edit-link">', '</span>'); ?></div>
+										//edit_comment_link(__('Edit', 'sandbox'), ' <span class="meta-sep">|</span> <span class="edit-link">', '</span>'); ?></div>
 <?php if ($comment->comment_approved == '0') _e("\t\t\t\t\t<span class='unapproved'>Your comment is awaiting moderation.</span>\n", 'sandbox') ?>
 							<?php comment_text() ?>
 						</li>
