@@ -19,7 +19,7 @@
 		<a href="<?php bp_activity_comment_user_link(); ?>">
 			<?php //bp_activity_avatar( 'type=thumb&user_id=' . bp_get_activity_comment_user_id() ); 
 			$user = get_user_info(bp_get_activity_comment_user_id());
-			echo '<img src="'.$user->fb_image_thumb.'" />';
+			echo '<img src="'.$user->fb_image_thumb.'" class="avatar-std"/>';
 			
 			?>
 		</a>

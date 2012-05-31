@@ -45,16 +45,22 @@ foreach ( $comments as $comment )
 <?php if ( get_comment_type() == "comment" ) : ?>
 						<li id="comment-<?php comment_ID() ?>" class="<?php sandbox_comment_class() ?>">
 							<div class="comment-meta"><span class="fn n"><?php
+								if ($comment->user_id){
+									$ui = get_user_info($comment->user_id);
+								} 
 								//print_r($comment);
-								$ui = get_user_info($comment->user_id);
-								//print_r($ui);
-								echo '<a href="'.$ui->permalink.'" class="comment-user-thumb">';
-								echo '<img src="'.$ui->fb_image_thumb.'" />';
-								echo '</a>';
-								echo '<a href="'.$ui->permalink.'">';
-								echo get_user_display_name($comment->user_id);
-								echo '</a>';
-							?></span> <?php printf(__('said on %1$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this comment">Permalink</a>', 'sandbox'),
+								if ($ui->fb_image_thumb){
+									echo '<a href="'.$ui->permalink.'" class="comment-user-thumb">';
+									echo '<img src="'.$ui->fb_image_thumb.'" class="comment-user-thumb-img"/>';
+									echo '</a>';
+									echo '<a href="'.$ui->permalink.'">';
+									echo get_user_display_name($comment->user_id);
+									echo '</a>';
+								} else {
+									echo '<span>'.$comment->comment_author.'</span>';
+								}
+								
+							?></span> <?php printf(__('said on %1$s <span class="meta-sep">|</span> <a href="%3$s" title="Permalink to this comment">#</a>', 'sandbox'),
 										get_comment_date(),
 										get_comment_time(),
 										'#comment-' . get_comment_ID() );
@@ -101,7 +107,7 @@ foreach ( $comments as $comment )
 					<h3><?php _e('Post a Comment', 'sandbox') ?></h3>
 
 <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-					<p id="login-req"><?php printf(__('You must be <a href="%s" title="Log in">logged in</a> to post a comment.', 'sandbox'),
+					<p id="login-req"><?php printf(__('<a href="%s" title="Log in" class="trigger-facebook-login">Log in with Facebook </a> to post a comment.', 'sandbox'),
 					get_option('siteurl') . '/wp-login.php?redirect_to=' . get_permalink() ) ?></p>
 
 <?php else : ?>
@@ -109,7 +115,7 @@ foreach ( $comments as $comment )
 						<form id="commentform" action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post">
 
 <?php if ( $user_ID ) : ?>
-							<p id="login"><?php printf(__('<span class="loggedin">Logged in as <a href="%1$s" title="Logged in as %2$s">%2$s</a>.</span> <span class="logout"><a href="%3$s" title="Log out of this account">Log out?</a></span>', 'sandbox'),
+							<p id="login"><?php printf(__('<span class="loggedin">Logged in as <a href="/members/'.$user_ID.'" title="Logged in as %2$s">'.get_user_display_name($user_ID).'</a>.</span> <span class="logout"><a href="%3$s" title="Log out of this account">Log out?</a></span>', 'sandbox'),
 								get_option('siteurl') . '/wp-admin/profile.php',
 								wp_specialchars($user_identity, true),
 								get_option('siteurl') . '/wp-login.php?action=logout&amp;redirect_to=' . get_permalink() ) ?></p>

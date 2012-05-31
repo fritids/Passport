@@ -29,13 +29,9 @@ if (!get_current_user_id()){
 						locate_template( array( 'members/single/groups.php'    ), true );
 						
 						if (bp_displayed_user_id() == get_current_user_id()){
-							echo '<a href="#" class="trigger-add-school-modal button-large profile-add-school">Add a School</a>';	
-							echo '<div id="add-school-modal" class="modal modal-style-medium">';
-							echo '<form>';
-							include($_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/ub_futurositymag/partials/add-school-row.php');
-							echo '<input type="submit" class="prevent-default button-large profile-add-school-submit" value="Add School" />';
-							echo '</form>';
-							echo '</div>';
+							echo '<a href="#" class="trigger-add-school-modal button-large profile-add-school">Add a School</a>';
+							include($_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/ub_futurositymag/partials/add-school-modal.php');
+							
 						}
 						
 					?>
@@ -94,7 +90,7 @@ if (!get_current_user_id()){
 				<?php do_action( 'bp_before_member_body' );
 				locate_template( array( 'members/single/activity.php'  ), true );
 				locate_template(array('members/single/comments.php'), true);
-				
+				locate_template(array('members/single/new-member-prompt.php'), true);
 				/*
 				if ( bp_is_user_activity() || !bp_current_component() ) :
 					locate_template( array( 'members/single/activity.php'  ), true );

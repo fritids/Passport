@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php sandbox_blog_lang(); ?>>
 <head profile="http://gmpg.org/xfn/11">
-	<title><?php bloginfo('name'); if ( is_404() ) : _e(' &raquo; ', 'sandbox'); _e('Not Found', 'sandbox'); elseif ( is_home() ) : _e(' &raquo; ', 'sandbox'); bloginfo('description'); else : wp_title(); endif; ?></title>
+	<title><?php bloginfo('name'); echo ' - '; if ( is_404() ) : _e(' &raquo; ', 'sandbox'); _e('Not Found', 'sandbox'); elseif ( is_home() ) : _e(' &raquo; ', 'sandbox'); bloginfo('description'); else : (wp_title()); endif; ?></title>
 	<meta http-equiv="content-type" content="<?php bloginfo('html_type') ?>; charset=<?php bloginfo('charset') ?>" />
-	<?php if (!is_home()) { 
+	<?php if (!is_home() && !bp_is_group()) { 
 		echo '<meta property="og:title" content="'.get_the_title().'"/>';
 	}
 	?>
@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="default.css" id="default"  />
 	<!-- dummy stylesheet - href to be swapped -->
 	<link rel="stylesheet" type="text/css" href="dummy.css" id="dummy_css"  />
-	<script type="text/javascript" src="/wp-content/themes/ub_futurositymag/denizen.js"></script>
+	
 	<!-- #apple style search -->
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/favicon.ico" />
 

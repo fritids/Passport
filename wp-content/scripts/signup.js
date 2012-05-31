@@ -18,17 +18,24 @@ var denizenUpdate;
    
 	DenizenSignup.prototype.bindHandlers = function() {
 		if ($('#modal-signup').length){
-			$('#modal-signup').modal();
+			if ($.totalStorage('no-nag')){
+			} else {
+				$('#modal-signup').modal();
+			}
 		}
 		$('.trigger-add-school-row').bind('click', THIS.addSchoolRow);
 		$('.trigger-signup-complete').bind('click', function(e){
 			e.preventDefault();
-			THIS.sendSignupData();
+			THIS.sendSignupData(trace);
 			THIS.scrollable.next();
 		});
 		$('.trigger-signup-cancel').bind('click', THIS.closeSignup);
 		$('.signup-school-name').live('click', function(){
 			lastInput = $(this);
+		});
+		$('.signup-no-thanks').live('click', function(e){
+			$.modal.close();
+			$.totalStorage('no-nag', true);
 		});
 		THIS.initAutoComplete();
 	}
@@ -40,21 +47,60 @@ var denizenUpdate;
 	
 	DenizenSignup.prototype.initAutoComplete = function(){
 		$('.signup-school-name').each(function(){
+			/*
 			$(this).autocomplete({
 				serviceUrl:'/wp-content/scripts/ajax.php/',
 				params:{action:'get_groups_by_name'},
 				onSelect:onSchoolSelect,
 			});
+			*/
+			var input = $(this);
+			console.log(input);
+			console.log(input.width());
+			input.autoComplete({
+				ajax:'/wp-content/scripts/ajax-search.php/',
+				minChars:3,
+				postVar:'query',
+				width:530,
+				onListFormat:onSchoolResult,
+				onSelect:onSchoolSelect,
+				striped:'search-result-striped',
+				rollover:'search-result-hover'
+			});
 		});
 		
+		var userSearch;
 		
-		function onSchoolSelect(value, data){
+		function onSchoolResult(event, ui){
+			var ul = ui.ul;
+			ul.empty();
+			ul.removeClass('hasSearch');
+			console.log(ui);
+			$(event.currentTarget).after(ul);
+			userSearch = $(event.currentTarget).val();
+			$.each(ui.list, function(i, row){
+				var li = $('<li class="search-result-li"></li>');
+				var name = $('<span>'+row.name+'</span>');
+				li.data('id', row.id);
+				li.append(name);
+				ul.append(li);
+				
+			});
+		}
+		
+		function onSchoolFocus(data){
+			console.log(data);
+		}
+		
+		function onSchoolSelect(event, ui){
+			console.log(ui);
 			var input = $('.signup-school-name:focus');
-			input.data('id', data);
+			input.data('id', ui.data.id);
+			//input.val(
 		}
 	};
 	
-	DenizenSignup.prototype.sendSignupData = function(e){	
+	DenizenSignup.prototype.sendSignupData = function(callback){	
 		var schools = new Array();
 		$('.signup-school-row:visible').each(function(){
 			var row = $(this);
@@ -67,8 +113,7 @@ var denizenUpdate;
 				schools.push(obj);
 			}
 		});
-		trace(schools);
-		$.post('/wp-content/scripts/ajax.php', {groups:schools, action:'save_member_groups'}, trace);
+		$.post('/wp-content/scripts/ajax.php', {groups:schools, action:'save_member_groups'}, callback);
 		
 	}
 	
@@ -77,7 +122,7 @@ var denizenUpdate;
 	}
 	
 	DenizenSignup.prototype.addSchoolRow = function(){
-		var row = $('.signup-school-row.blank-row').clone();
+		var row = $('.signup-school-row.blank-row').first().clone();
 		row.removeClass('blank-row hidden');
 		$('.signup-school-row:visible').last().after(row);
 		row.hide();
@@ -119,8 +164,17 @@ var denizenUpdate;
 	}
 	
 	DenizenUpdate.prototype.saveSchool = function(e){
-		denizenSignup.sendSignupData(e);
-		location.reload();
+		e.preventDefault();
+		$(this).hide();
+		var pleaseWait = $('<div class="please-wait">Now Saving</div>');
+		$(this).after(pleaseWait);
+		denizenSignup.sendSignupData(function(){
+			setTimeout(function(){
+				console.log('reload!');
+				location.reload();
+			}, 300);
+		});
+		
 	}
 	
 	DenizenUpdate.prototype.launchAddSchoolModal = function(){

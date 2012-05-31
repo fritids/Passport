@@ -46,7 +46,7 @@
 	
 		</div><!-- #content .hfeed -->
 		
-					<?php get_sidebar() ?>
+					<?php //get_sidebar() ?>
 				<div id="nav-above" class="navigation">
 				<div class="nav-previous"><?php next_posts_link(__('<span class="meta-nav">&laquo;</span> Older posts', 'sandbox')) ?></div>
 				<div class="nav-next"><?php previous_posts_link(__('<span class="meta-nav">&raquo;</span> Newer posts', 'sandbox')) ?></div>

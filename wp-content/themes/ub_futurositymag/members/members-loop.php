@@ -39,7 +39,12 @@
 
 		<li>
 			<div class="item-avatar">
-				<a href="<?php bp_member_permalink(); ?>"><?php bp_member_avatar(); ?></a>
+				<a href="<?php bp_member_permalink(); ?>">
+					<?php
+						$mem = get_user_info(bp_get_member_user_id());
+						echo '<img src="'.$mem->fb_image_thumb.'" class="avatar-std" />';
+					?>
+				</a>
 			</div>
 
 			<div class="item">
