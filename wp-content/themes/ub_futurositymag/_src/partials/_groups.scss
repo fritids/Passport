@@ -6,3 +6,33 @@
 #group-dir-search {
 	display:none;
 }
+
+.school-my-member-info {
+	@include clearfix;
+	background-color:$yellow;
+	padding:5px;
+	margin-top:10px;
+	.content {
+	}
+	.avatar-generic {
+		float:left;
+		display:block;
+		margin-right:12px;
+	}
+	
+}
+
+.group-avatar-upload {
+	display:none;
+}
+
+.group-avatar-main {
+	@include trans(500ms, background-color);
+	@include trans(500ms, border-color);
+	background-color:rgba(0, 0, 0, 0);
+	&.file-drop-hover {
+		background-color: rgba(0, 0, 0, .2);
+		border: 3px dashed rgba(0, 0, 0, .5);
+		padding: 0px;
+	}
+}

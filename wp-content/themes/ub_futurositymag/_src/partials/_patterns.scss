@@ -668,14 +668,15 @@ $popover-box-padding: 10px !default;
 	display: none;
 	margin: auto;
 	position: fixed;
-	top: 30%;
 	left: 5%;
 	right: 5%;
 	width: 75%;
 	max-width: 480px;
 	z-index: 9999;
-	}
-
+}
+#simplemodal-container {
+	@include trans(800ms);
+}
 
 /* ---------------------------------------------- */
 
