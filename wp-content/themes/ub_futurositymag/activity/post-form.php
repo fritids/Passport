@@ -23,7 +23,7 @@
 	</div>
 
 	<h5 class="activity-prompt"><?php if ( bp_is_group() )
-			printf( __( "What's new at %s, %s?", 'buddypress' ), bp_get_group_name(), get_user_display_name() );
+			printf( __( "What do you miss about %s, %s?", 'buddypress' ), bp_get_group_name(), get_user_display_name() );
 		else
 			printf( __( "What's new, %s?", 'buddypress' ), get_user_display_name() );
 	?></h5>

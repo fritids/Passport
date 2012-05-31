@@ -38,7 +38,7 @@
 			if ($act->component == 'blogs'){
 				$ci = get_comment_info($act->secondary_item_id);
 				$pi = get_post_info($ci->comment_post_ID);
-				echo ' <span class="activity-action-info"> commented on <a href="'.$act->primary_link.'">'.$pi->post_title.'</a></span>';
+				echo ' <span class="activity-action-info"> commented on <a href="'.$pi->permalink.'">'.$pi->post_title.'</a></span>';
 			}
 			if ($act->component == 'groups'){
 				//print_r($act);
@@ -104,7 +104,13 @@
 			<?php if ( is_user_logged_in() ) : ?>
 
 				<form action="<?php bp_activity_comment_form_action(); ?>" method="post" id="ac-form-<?php bp_activity_id(); ?>" class="ac-form"<?php bp_activity_comment_form_nojs_display(); ?>>
-					<div class="ac-reply-avatar"><?php bp_loggedin_user_avatar( 'width=' . BP_AVATAR_THUMB_WIDTH . '&height=' . BP_AVATAR_THUMB_HEIGHT ); ?></div>
+					<div class="ac-reply-avatar">
+					<?php
+						$me = get_user_info();
+						//print_r($me);
+						echo '<img src="'.$me->fb_image_thumb.'" class="avatar-img" />';
+					?>
+					</div>
 					<div class="ac-reply-content">
 						<div class="ac-textarea">
 							<textarea id="ac-input-<?php bp_activity_id(); ?>" class="ac-input" name="ac_input_<?php bp_activity_id(); ?>"></textarea>

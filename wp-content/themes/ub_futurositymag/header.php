@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php sandbox_blog_lang(); ?>>
 <head profile="http://gmpg.org/xfn/11">
-	<title><?php bloginfo('name'); if ( is_404() ) : _e(' &raquo; ', 'sandbox'); _e('Not Found', 'sandbox'); elseif ( is_home() ) : _e(' &raquo; ', 'sandbox'); bloginfo('description'); else : wp_title(); endif; ?></title>
+	<title><?php bloginfo('name'); echo ' - '; if ( is_404() ) : _e(' &raquo; ', 'sandbox'); _e('Not Found', 'sandbox'); elseif ( is_home() ) : _e(' &raquo; ', 'sandbox'); bloginfo('description'); else : (wp_title()); endif; ?></title>
 	<meta http-equiv="content-type" content="<?php bloginfo('html_type') ?>; charset=<?php bloginfo('charset') ?>" />
-	<?php if (!is_home()) { 
+	<?php if (!is_home() && !bp_is_group()) { 
 		echo '<meta property="og:title" content="'.get_the_title().'"/>';
 	}
 	?>
@@ -11,6 +11,7 @@
 	<meta name="generator" content="WordPress <?php bloginfo('version') ?>" /><!-- Please leave for stats -->
 	<link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url'); ?>" />
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/ub_futurositymag/_css/screen.css" />
+	<link rel='stylesheet' id='bp-css'  href='/wp-content/plugins/bp-template-pack/bp.css?ver=20110918' type='text/css' media='all' />
 	<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" />
 	<link rel="alternate" type="application/rss+xml" href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Comments RSS feed', 'sandbox'); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url') ?>" />
@@ -19,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="default.css" id="default"  />
 	<!-- dummy stylesheet - href to be swapped -->
 	<link rel="stylesheet" type="text/css" href="dummy.css" id="dummy_css"  />
-	<script type="text/javascript" src="/wp-content/themes/ub_futurositymag/denizen.js"></script>
+	
 	<!-- #apple style search -->
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/favicon.ico" />
 
@@ -44,6 +45,9 @@
 
 	echo '<body class="'.implode(' ', bp_get_the_body_class(get_body_class())) . ' ' .'section-'.$section.' user-'.$user.'">';
 ?>
+<div id="message-center">
+	Now loading your data from Facebook
+</div>
 <div id="wrapper" class="hfeed">
 
 	<div id="header">
@@ -54,29 +58,29 @@
 	<?php include (TEMPLATEPATH . '/searchform.php'); ?>
 	
 	<?php
+		
+		echo '<div id="profile-tools">';
+		echo '<span class="network">Denizen Network</span>';
+		echo '<ul class="tools">';
 		if (is_user_logged_in()){
-			echo '<div id="profile-tools">';
-			echo '<span class="network">Denizen Network</span>';
-			echo '<ul class="tools">';
 			echo '<li><a href="'.get_user_info()->permalink.'">My Profile</a></li>';
 			echo '<li><a href="/schools/">Schools</a></li>';
 			echo '<li><a href="'.wp_logout_url( home_url() ).'">Sign Out</a></li>';
-			echo '</ul>';
-			echo '</div>';
-			
-			$group_count = groups_total_groups_for_user(get_current_user_id());
-			if (!$group_count){
-				include('partials/nomad-nag.php');
-			} else {
-				//echo $group_count;
-			}
 		} else {
-			echo '<div id="login-tools">';
-			echo '<ul>';
-			echo '<li class="facebook-button-li"><a href="#" class="trigger-facebook-login facebook-button">Login with Facebook</a></li>';
-			echo '</ul>';
-			echo '</div>';
+			echo '<li><a href="#" class="trigger-facebook-login">Login</a></li>';
+			echo '<li><a href="#" class="trigger-facebook-login">Signup with Facebook</a></li>';
+			echo "<li><a href='/about/denizen-network/'>What's this?</a></li>";
 		}
+		echo '</ul>';
+		echo '</div>';
+			
+		$group_count = groups_total_groups_for_user(get_current_user_id());
+		if (!$group_count){
+			include('partials/nomad-nag.php');
+		} else {
+			//echo $group_count;
+		}
+		
 	?>
 	
 	<div id="pages">

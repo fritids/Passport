@@ -53,12 +53,15 @@
 		?>
 		<li class="groups-index-item">
 			<div class="item-avatar">
-				<a href="<?php bp_group_permalink(); ?>"><?php bp_group_avatar( 'type=thumb&width=50&height=50' ); ?></a>
+				<a href="<?php bp_group_permalink(); ?>"><?php
+					$gi = get_group_info(bp_get_group_id());
+					echo '<img src="'.get_resized_image($gi->avatar, 50, 50).'" class="avatar"/>';
+				?></a>
 			</div>
 
 			<div class="item">
 				<div class="item-title"><a href="<?php bp_group_permalink(); ?>"><?php bp_group_name(); ?></a></div>
-				<div class="item-meta"><span class="activity"><?php printf( __( 'active %s', 'buddypress' ), bp_get_group_last_active() ); ?></span></div>
+				<div class="item-meta"><!--<span class="activity"><?php printf( __( 'active %s', 'buddypress' ), bp_get_group_last_active() ); ?></span>--></div>
 
 				<div class="item-desc"><?php bp_group_description_excerpt(); ?></div>
 				<div class="item-dates">

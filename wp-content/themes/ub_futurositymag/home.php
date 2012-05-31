@@ -32,26 +32,6 @@
 </ul>
 
 
-
-<ul class="latest">
-<?php $feature_post = get_posts( 'category=4&numberposts=1' ); ?>
-<?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
-<li><h2 class="latest"><?php the_category(' '); ?></h2></li>
-<?php endforeach; ?>
-<?php $feature_post = get_posts( 'category=4&numberposts=3' ); ?>
-<?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
-<span class="group">
-		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="home-thumb">
-		<?php 
-			insert_post_image(get_the_ID(), get_the_title());	
-		?></a></li>
-  		<li class="list-time"><?php the_time('d'); ?>.<?php the_time('M'); ?></li>
-  		<li class="list-title"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></li>
-  		<li class="latest-excerpt"><?php the_excerpt(); ?></li>
-</span>
-<?php endforeach; ?>
-</ul>
-
 <ul class="latest">
 <?php $feature_post = get_posts( 'category=15&numberposts=1' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
@@ -60,7 +40,7 @@
 <?php $feature_post = get_posts( 'category=15&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
-		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
+		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
 		?></a></li>
@@ -98,6 +78,25 @@
 <?php $feature_post = get_posts( 'category=14&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
+		<li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
+		<?php 
+			insert_post_image(get_the_ID(), get_the_title());	
+		?></a></li>
+  		<li class="list-time"><?php the_time('d'); ?>.<?php the_time('M'); ?></li>
+  		<li class="list-title"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></li>
+  		<li class="latest-excerpt"><?php the_excerpt(); ?></li>
+</span>
+<?php endforeach; ?>
+</ul>
+
+<ul class="latest">
+<?php $feature_post = get_posts( 'category=53&numberposts=1' ); ?>
+<?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
+<li><h2 class="latest"><?php the_category(' '); ?></h2></li>
+<?php endforeach; ?>
+<?php $feature_post = get_posts( 'category=53&numberposts=3' ); ?>
+<?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
+<span class="group">
  <li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
 		<?php 
 			insert_post_image(get_the_ID(), get_the_title());	
@@ -109,16 +108,12 @@
 <?php endforeach; ?>
 </ul>
 
-
-
-
-
 <ul class="latest">
-<?php $feature_post = get_posts( 'category=53&numberposts=1' ); ?>
+<?php $feature_post = get_posts( 'category=478&numberposts=1' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <li><h2 class="latest"><?php the_category(' '); ?></h2></li>
 <?php endforeach; ?>
-<?php $feature_post = get_posts( 'category=53&numberposts=3' ); ?>
+<?php $feature_post = get_posts( 'category=478&numberposts=3' ); ?>
 <?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
 <span class="group">
 <li><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"  class="home-thumb">
@@ -128,7 +123,7 @@
   		<li class="list-time"><?php the_time('d'); ?>.<?php the_time('M'); ?></li>
   		<li class="list-title"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></li>
   		<li class="latest-excerpt"><?php the_excerpt(); ?></li>
- </span>
+</span>
 <?php endforeach; ?>
 </ul>
 
@@ -232,7 +227,7 @@
 					<li><a href="<?php bloginfo('comments_rss2_url') ?>" title="<?php echo wp_specialchars(bloginfo('name'), 1) ?> <?php _e('Comments RSS feed', 'sandbox'); ?>" rel="alternate" type="application/rss+xml"><?php _e('RSS all comments', 'sandbox') ?></a></li>
 				</ul>
 
-				<a href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" rel="alternate" type="application/rss+xml"><img src="http://www.denizenmag.com/logo2.jpg" width="125" style="border:none;" alt="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" /></a>
+				<a href="<?php bloginfo('rss2_url') ?>" title="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" rel="alternate" type="application/rss+xml"><img src="/images/logo2.jpg" width="125" style="border:none;" alt="<?php echo wp_specialchars(get_bloginfo('name'), 1) ?> <?php _e('Posts RSS feed', 'sandbox'); ?>" /></a>
  </div>
  
  

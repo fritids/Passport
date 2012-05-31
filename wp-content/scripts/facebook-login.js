@@ -1,19 +1,19 @@
 var fbLogin;
-var APP_ID = '271915746217211';
-var THIS;
 
 ;(function() {
-
+	
+	var THIS;
+	var APP_ID = '271915746217211';
 	function FacebookLogin() {
 		THIS = this;
 		this.bindHandlers();
 		this.model = new FacebookLoginModel();
 	}
-
    
 	FacebookLogin.prototype.bindHandlers = function() {
    		$('.trigger-facebook-login').bind('click', this.launchFacebookLogin);
    		$('.comment-submit').bind('click', this.sendFacebookComment);
+   		
 	};
 	
 	FacebookLogin.prototype.sendFacebookComment = function(e){
@@ -52,6 +52,9 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.onFacebookLogin = function(response){
+		console.log('onFacebookLogin');
+		console.log(JSON.stringify(response));
+		$('#message-center').addClass('show');
 		if (response.authResponse){
 			//success
 			FB.api('/me', THIS.onFacebookData);
@@ -65,13 +68,16 @@ var THIS;
 	};
 	
 	FacebookLogin.prototype.onFacebookData = function(user){
+		console.log('onFacebookData');
+		console.log(JSON.stringify(user));
 		if (user){
 			THIS.model.login(user);
 		}
 	};
 	
 	FacebookLogin.prototype.onWordPressLogin = function(data){
-		trace(data);
+		console.log('onWordPressLogin');
+		console.log(JSON.stringify(data));
 		if (data == 'success'){
 			window.location = window.location;
 		}
@@ -92,13 +98,18 @@ var THIS;
 	
 	FacebookLoginModel.prototype.init = function(){
 		window.fbAsyncInit = function() {
-			FB.init({
+			try {FB.init({
 			  appId      : APP_ID, 
+			  /*frictionlessRequests: true,*/
 			  channelUrl : '//'+document.domain+'/wp-content/scripts/js/facebook-channel.php',
 			  status     : true, // check login status
 			  cookie     : true, // enable cookies to allow the server to access the session
 			  xfbml      : true  // parse XFBML
+			  
 			});
+			} catch(e){
+				alert('There is an error with Facebook; please try again soon.');
+			}
 			// Additional initialization code here
 			console.log('Facebook Connection Established');
 		};

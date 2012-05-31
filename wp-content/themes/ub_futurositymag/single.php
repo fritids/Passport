@@ -136,12 +136,14 @@
 						echo '<p>';
 						userphoto_the_author_thumbnail();
 						echo '</p>';
-					}?>				
+					} 
+					
+					?>				
 				
 						<div class="author-desc"><p><?php the_author_description(); ?></p></div>
 						<div class="author-links">Posts by <?php the_author_posts_link(); ?><br/>
 						<?php the_author(); ?>&rsquo;s <a href="<?php the_author_url(); ?>">Website</a>
-						<?php edit_post_link(__('Edit', 'sandbox'), "\n\t\t\t\t\t<span class=\"edit-link\">", "</span>"); ?><br><a href = "http://www.facebook.com/denizenmag"><img src = "http://www.denizen-mag.com/images/fb.png" width = "15" class = "clean"> Join Denizen's Facebook!</a>
+						<?php edit_post_link(__('Edit', 'sandbox'), "\n\t\t\t\t\t<span class=\"edit-link\">", "</span>"); ?><br><a href = "http://www.facebook.com/denizenmag"><img src = "/images/fb.png" width = "15" class = "clean"> Join Denizen's Facebook!</a>
 						</div>
 				<?php } ?>
 		

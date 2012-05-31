@@ -5,25 +5,47 @@
 	$user = (object)$_POST['user'];
 	$user_id = find_user_by_meta('fbid', $user->id);
 	$newreg = false;
-	if (!$user_id){
+	//print_r($user);
+	//exit;
+	if (!$user_id && $user_id != 1){
 		$newreg = true;
 		$user->email = str_replace('u0040', '@', $user->email);
 		$pwd = wp_generate_password();
 		$user_id = wp_create_user($user->email, $pwd, $user->email);
-		update_user_meta($user_id, 'fbid', $user->id);
-		update_user_meta($user_id, 'gender', $user->gender);
-		update_user_meta($user_id, 'show_admin_bar_front', false);
-		update_user_meta($user_id, 'nickname', $user->first_name);
-		update_user_meta($user_id, 'ptp', $pwd);
-		global $wpdb;
-		$query = "UPDATE $wpdb->users SET display_name = '$fname' WHERE ID = $user_id LIMIT 1";
-		$result = $wpdb->get_row($query);
-		$query = "UPDATE $wpdb->users SET user_nicename = '$user_id' WHERE ID = $user_id LIMIT 1";
-		$result = $wpdb->get_row($query);
+		if (intval($user_id) != $user_id){
+			echo $user_id;
+		} else {
+			update_user_meta($user_id, 'fbid', $user->id);
+			update_user_meta($user_id, 'gender', $user->gender);
+			update_user_meta($user_id, 'show_admin_bar_front', false);
+			update_user_meta($user_id, 'nickname', $user->first_name);
+			update_user_meta($user_id, 'ptp', $pwd);
+			update_user_meta($user_id, 'wp_0dusy5_user_level', 0);
+			update_user_meta($user_id, 'user_level', 0);
+			$sub = array();
+			$sub['subscriber'] = 1;
+			update_user_meta($user_id, 'wp_0dusy5_capabilities', $sub);
+			update_user_meta($user_id, 'capabilities', $sub);
+			global $wpdb;
+			$last = substr($user->last_name, 0, 1);
+			$display_name = $user->first_name.' '.$last.'.';
+			$query = "UPDATE $wpdb->users SET display_name = '$display_name' WHERE ID = $user_id LIMIT 1";
+			$result = $wpdb->get_row($query);
+			$query = "UPDATE $wpdb->users SET user_nicename = '$user_id' WHERE ID = $user_id LIMIT 1";
+			$result = $wpdb->get_row($query);
+		}
 	} 
 	if ($user_id){
 		update_user_meta($user_id, 'first_name', $user->first_name);
 		update_user_meta($user_id, 'last_name', $user->last_name);
+		if ($user->location){
+			update_user_meta($user_id, 'current_loc_id', $user->location['id']);
+			update_user_meta($user_id, 'current_loc_name', $user->location['name']);
+		}
+		if ($user->hometown){
+			update_user_meta($user_id, 'hometown_loc_id', $user->hometown['id']);
+			update_user_meta($user_id, 'hometown_loc_name', $user->hometown['name']);
+		}
 		$user_data = get_user_by('id', $user_id);
 		if ($user_data->wp_user_level == 0){
 			$creds = array();

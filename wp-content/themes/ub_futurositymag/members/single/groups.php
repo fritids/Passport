@@ -43,7 +43,15 @@ else :
 	do_action( 'bp_before_member_groups_content' ); ?>
 
 	<div class="groups mygroups">
-
+		<?php
+			$count = groups_total_groups_for_user(bp_displayed_user_id());
+			$noun = 'Schools';
+			if ($count == 1){
+				$noun = 'School';
+			}
+			echo '<h3 class="member-membership-header">My '.$count.' '.$noun.'</h3>';
+		?>
+		
 		<?php locate_template( array( 'groups/members-groups-loop.php' ), true ); ?>
 
 	</div>

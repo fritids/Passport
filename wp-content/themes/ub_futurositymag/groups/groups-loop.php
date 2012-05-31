@@ -13,20 +13,17 @@
 ?>
 
 <?php do_action( 'bp_before_groups_loop' ); ?>
+<?php
+	global $groups_template;
+?>
 
-<?php if ( bp_has_groups( bp_ajax_querystring( 'groups' ) ) ) : ?>
+<?php if ( bp_has_groups('type=alphabetical') ) : ?>
 
 	<div id="pag-top" class="pagination">
 
 		<div class="pag-count" id="group-dir-count-top">
 
-			<?php bp_groups_pagination_count(); ?>
-
-		</div>
-
-		<div class="pagination-links" id="group-dir-pag-top">
-
-			<?php bp_groups_pagination_links(); ?>
+			<?php //bp_groups_pagination_count(); ?>
 
 		</div>
 
@@ -34,48 +31,37 @@
 
 	<?php do_action( 'bp_before_directory_groups_list' ); ?>
 
-	<ul id="groups-list" class="item-list" role="main">
+	<ul id="groups-list" class="schools-index-ul" role="main">
 	
 	<?php 
-		global $groups_template;
+		
 		$i = 0;
 		while ( bp_groups() ) : bp_the_group(); ?>
-		<li class="groups-index-item">
-			<!--
-			<div class="item-avatar">
-				<a href="<?php bp_group_permalink(); ?>"><?php bp_group_avatar( 'type=thumb&width=50&height=50' ); ?></a>
-			</div>
-
-			<div class="item">
-				<div class="item-title"><a href="<?php bp_group_permalink(); ?>"><?php bp_group_name(); ?></a></div>
-				<div class="item-meta"><span class="activity"><?php printf( __( 'active %s', 'buddypress' ), bp_get_group_last_active() ); ?></span></div>
-
-				<div class="item-desc"><?php bp_group_description_excerpt(); ?></div>
-
-				<?php do_action( 'bp_directory_groups_item' ); ?>
-
-			</div>
-
-			<div class="action">
-
-				<?php //do_action( 'bp_directory_groups_actions' ); ?>
-
-				<div class="meta">
-					<?php echo $groups_template->group->total_member_count . ' students'; ?>
-
-				</div>
-
-			</div>-->
+		<li class="schools-index-item">
+			
 			<?php
 				//print_r($groups_template);
 				$group = $groups_template->groups[$i];
-				echo '<h2>'.$group->name.'</h2>';
+				$group = get_group_info($group->id);
+				echo '<div class="group-thumbnail">';
+				echo '<a href="'.$group->permalink.'"><img src="'.get_resized_image($group->avatar, 120, 100).'" /></a>';
+				echo '</div>';
+				echo '<hgroup class="schools-index-hgroup">';
+				echo '<a href="'.$group->permalink.'" class="header-h2">'.$group->name.'</a>';
+				if ($group->group_loc_name){
+					echo '<h5 class="school-meta">'.$group->group_loc_name.'</h5>';
+				}
+				echo '</hgroup>';
 				$members = get_group_members($group->id);
+				echo '<ul class="schools-index-roster">';
 				foreach($members as $m){
 					$member = get_user_info($m->user_id);
 					//print_r($member);
-					echo '<li><a href="'.$member->permalink.'"><img src="'.$member->fb_image_thumb.'" /></a></li>';
+					if ($member->fb_image_thumb){
+						echo '<li><a href="'.$member->permalink.'"><img src="'.$member->fb_image_thumb.'" /></a></li>';
+					}
 				}
+				echo '</ul>';
 			?>
 		</li>
 	<?php
@@ -89,15 +75,19 @@
 
 	<div id="pag-bottom" class="pagination">
 
-		<div class="pag-count" id="group-dir-count-bottom">
+		<div class="pagination-links" id="group-dir-pag-top">
 
-			<?php bp_groups_pagination_count(); ?>
-
-		</div>
-
-		<div class="pagination-links" id="group-dir-pag-bottom">
-
-			<?php bp_groups_pagination_links(); ?>
+			<?php 
+				$total = get_total_gropus();
+				$total_pages = ceil($total/20);
+				echo '<ul class="group-pagination-links">';
+				for ($i = 0; $i<$total_pages; $i++){
+					$j = $i+1;
+					echo '<li><a href="/schools/?grpage='.$j.'&num=20">'.$j.'</a></li>';
+				}
+				echo '</ul>';
+			?>
+			
 
 		</div>
 

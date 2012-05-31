@@ -37,12 +37,11 @@
 	<div id="item-meta">
 
 		<?php if ( bp_is_active( 'activity' ) ) : ?>
-
+			<!--
 			<div id="latest-update">
-
 				<?php bp_activity_latest_update( bp_displayed_user_id() ); ?>
-
 			</div>
+			-->
 
 		<?php endif; ?>
 

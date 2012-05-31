@@ -18,8 +18,10 @@
 		<?php do_action( 'bp_before_directory_groups' ); ?>
 
 		<form action="" method="post" id="groups-directory-form" class="dir-form">
-
+			<header class="schools-index-header">
 			<h3 class="schools-directory-header"><?php _e( 'Schools', 'buddypress' ); ?></h3>
+			<a href="#" class="trigger-add-school-modal button-large profile-add-school">Add a School</a><?php include($_SERVER['DOCUMENT_ROOT'].'/wp-content/themes/ub_futurositymag/partials/add-school-modal.php');?>
+			</header>
 			<?php
 			if ( is_user_logged_in() && bp_user_can_create_groups()){ 
 				if (get_user_info()->admin){
@@ -62,7 +64,6 @@
 				</ul>
 			</div>
 			-->
-
 			<div id="groups-dir-list" class="groups dir-list">
 
 				<?php locate_template( array( 'groups/groups-loop.php' ), true ); ?>

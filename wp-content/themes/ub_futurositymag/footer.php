@@ -17,11 +17,26 @@
 	<!-- Libs -->
 	<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/jquery.simplemodal.min.js"></script>
-	<script type="text/javascript" src="/wp-content/scripts/jquery.autocomplete.min.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/jquery.auto-complete.min.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/jquery.scrollable.min.js"></script>
 	
+	<!-- Image Upload -->
+	
+	<script type="text/javascript" src="/wp-content/scripts/fileupload/js/vendor/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/jquery.dropupload.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/jquery.total-storage.js"></script>
+	<!--
+	<script type="text/javascript" src="/wp-content/scripts/fileupload/js/jquery.fileupload.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/fileupload/js/jquery.fileupload-ip.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/fileupload/js/jquery.fileupload-ui.js"></script>
+	
+	<script type="text/javascript" src="/wp-content/scripts/fileupload/js/jquery.iframe-transport.js"></script>-->
+	
+	<script type="text/javascript" src="/wp-content/themes/ub_futurositymag/denizen.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/passport.js"></script>
 	<script type="text/javascript" src="/wp-content/scripts/facebook-login.js"></script>
+	<script type="text/javascript" src="/wp-content/scripts/facebook-invite.js"></script>
+	
 	<script type="text/javascript" src="/wp-content/scripts/signup.js"></script>
 	
 </section>
