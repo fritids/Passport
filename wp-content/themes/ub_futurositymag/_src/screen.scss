@@ -13,12 +13,14 @@
 
 /* ============================================= */
 
-a {
+a, a:link, a:visited {
 	text-decoration: none;
-	color: inherit;
-	&:hover {		
+	color: $red;
+	&:hover {	
+		color:darken(saturate($red, 30), 22);
 	}
 }
+
 
 .hidden {
 	display:none;
@@ -43,7 +45,17 @@ strong, .strong {
 em {
 	font-style: italic;
 	}
-
+.header-h4 {
+	font-family:$sans;
+	font-size:13px;
+	text-transform:uppercase;
+	margin-bottom:12px;
+}
+.header-h2 {
+	font-family:$serif;
+	font-size:20px;
+	
+}
 
 
 /* ============================================= */
@@ -73,6 +85,72 @@ em {
 	font-family:$serif;
 	font-size:15px;
 	line-height:20px;
+}
+
+.content-editable {
+	border:1px solid #FFF;
+}
+
+.notification {
+	border: 1px solid darken(saturate($yellow, 10), 10);
+	@include border-radius(3px);
+	font-family:$sans;
+	text-align: center;
+	margin-top: 3px;
+	text-decoration: none;
+	display:block;
+	background: $yellow;
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, .5)), color-stop(100%,rgba(255, 255, 255, 0)));
+	background-image: -moz-linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+	background-image: -ms-linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+	background-image: -o-linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+	background-image: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+	padding:10px;
+
+}
+
+#message-center {
+	@extend .notification;
+	position: fixed;
+	margin: auto;
+	text-align: center;
+	width: 760px;
+	margin-left: 100px;
+	@include border-top-left-radius(0px);
+	@include border-top-right-radius(0px);
+	@include box-shadow(0px 0px 5px rgba(0, 0, 0, .5));
+	opacity:0;
+	visibility:hidden;
+	@include trans(1.5s);
+	top:-100px;
+}
+
+#message-center.show {
+	opacity:1;
+	visibility:visible;
+	top:0px;
+}
+
+html div#message p {
+	@extend .notification;
+}
+
+.notification-profile {
+	@extend .notification;
+}
+
+.edit-mode .content-editable {
+	border:1px dotted #999;
+	
+	&:hover {
+		background-color:adjust-lightness($yellow, 1);
+	}
+	
+	&:focus, &:hover:focus {
+		background-color:$yellow;
+		outline:none;
+	}
 }
 
 #item-header-content, html div#item-header h2 {
@@ -185,29 +263,103 @@ html  {
 .modal-style-medium {
 	min-width:600px;
 	min-height:300px;
+	padding:20px;
 }
 
 #modal-signup-scrollable {
-	padding:40px 50px;
+	@include trans;
+	min-height:300px;
+	.slide {
+		min-height:300px;
+		padding:40px 50px;
+		width:890px;
+	}
+	form & {
+		@include trans;
+	}
+}
+
+.circ {
+	display: inline-block;
+	@include linear-grad(#CCC);
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	margin-right: 5px;
+	font-size: 16px;
+	border: 1px solid;
+	.plusser {
+		font-weight: bold;
+		font-family: helvetica;
+		color: white;
+		position: relative;
+		top: -1px;
+	}
 }
 
 #modal-welcome {
 	background-color: gray;
 	box-shadow: inset 0px -10px 10px rgba(0, 0, 0, .3);
 	padding:5px 50px;
+	color:white;
+	h2 {
+		font-size: 45px;
+ 		font-family:$serif;
+		margin-top: 10px;
+		opacity: 0.8;
+		font-style: italic;
+	}
+	h3 {
+		line-height:22px;
+		opacity:0.8;
+	}
 }
 
 #modal-screen-signup-schools {
 	.add-school-row {
+		@include btn(large, light);
 		border:1px dashed $red;
 		display:block;
 		padding:15px;
 		text-align:center;
+		width: 62%;
+		margin: auto;
+		border-radius: 10px;
+		margin-bottom:18px;
+		@include trans(250ms);
 	} 
 }
 
-.signup-school-row {
+.btn-group {
+	.btn-large-light {
+		display:inline-block;
+		width:46.5%;
+		margin-right:5%;
+		text-align: center;
+		padding: 22px;
+		&:hover {
+			@include box-shadow(0px 0px 17px rgba(0, 0, 0, .2));
+		}
+	}
+	.btn-large-light:last-child {
+		margin-right:0%;
+	}
+}
 
+.btn-large-light {
+	@include btn(large, light);
+}
+
+#add-school-modal.modal-style-medium {
+	form {
+		padding:13px 29px;
+	}
+	inline-label:first-child {
+		margin-left:50px;
+	}	
+}
+.signup-school-row {
+	position:relative;
 	border:0px;
 
 	.inline-label {
@@ -222,6 +374,12 @@ html  {
 		font-size:14px;
 		font-family:$sans;
 		width:330px;
+		.modal-style-medium & {
+			display: block;
+			font-size: 22px;
+			width: 100%;
+			margin-bottom: 16px;
+		}	
 	}
 	input[class*="year"] {
 		display:inline-block;
@@ -229,13 +387,14 @@ html  {
 		padding:5px 8px;
 		font-size:14px;
 		font-family:$sans;
+		position:relative;
+		z-index:0;
 	}
 }
 
 .submit-signup {
 	@include btn(large, dark);
 	float:right;
-	margin-right:50px;
 }
 
 .signup-no-thanks {
@@ -280,11 +439,42 @@ html  {
 
 
 .autocomplete-w1 { background:url(img/shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
-.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete { 
+	border:1px solid #999; 
+	background:#FFF; 
+	cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
 .autocomplete .selected { background:#F0F0F0; }
 .autocomplete div { padding:2px 5px; white-space:nowrap; }
 .autocomplete strong { font-weight:normal; color:#3399FF; }
 
+
+html body .auto-complete-list {
+	top:50px !important;
+	left:0px !important;
+}
+.auto-complete-list {
+	position:absolute;
+	border:5px solid $gray;
+	border-top-width:0px;
+	@include box-shadow(0px 4px 8px rgba(0, 0, 0, .5));
+	@include border-bottom-left-radius(8px);
+	@include border-bottom-right-radius(8px);
+	z-index:100;
+	.search-result-li {
+		background-color:white;
+		border-bottom:1px solid rgba($gray, .5);
+		padding:12px 20px;
+		list-style-type:none;
+		font-size:18px;
+		font-family:$sans;
+	}
+	.search-result-striped {
+		background-color:darken($white, 10);
+	}
+	.search-result-hover {
+		background-color:lighten($blue, 50);
+	}
+}
 
 
 /* ============================================= */
@@ -369,15 +559,25 @@ html  {
 		width:93px;
 		
 		li {
-		list-style-type: none;
-		font-family: $serif;
-		color: #FFFFFF;
-		font-size:13px;
-		line-height: 23px;
-		padding-top: 3px;
-		text-align:center;
-		
+			list-style-type: none;
+			font-family: $serif;
+			color: #FFFFFF;
+			font-size:13px;
+			line-height: 13px;
+			padding-bottom:8px;
+			padding-top: 3px;
+			text-align:center;
+			&:first-child {
+				padding-top:8px;
+			}
+			a:link, a:visited {
+				color:white;
+			}
+			a:hover {
+				color:$red;
+			}
 		}
+		
 		
 		
 	}
@@ -394,9 +594,8 @@ html  {
 
 /* SCHOOLS INDEX */
 
-.schools-directory-header {
-	@extend .section-header;
-}
+
+
 
 #groups-directory-form {
 	@include clearfix;
@@ -412,10 +611,21 @@ html  {
 	@include clearfix;
 }
 
+
 .groups-index-item {
-	float:left;
-	width:30%;
-	margin-right:5%;
+	@include pie-clearfix;
+	.item-title {
+		width:100%;
+	}
+	.item-desc {
+		display:none;
+	}
+}
+
+.schools-index-item {
+	border-bottom:1px solid #AAA;
+	padding:12px;
+	min-height:80px;
 	&:nth-child(3) {
 		margin-right:0;
 	}
@@ -441,6 +651,17 @@ html  {
 			height:50px;
 		}
 	}
+	h3.member-membership-header {
+		margin-bottom:0px;
+		padding-bottom:0px;
+	}
+}
+
+.school-section-header {
+	@extend .header-h4;
+}	
+.member-membership-header {
+	@extend .header-h4;
 }
 #item-main {
 	float:left;
@@ -459,6 +680,24 @@ body form#whats-new-form textarea {
 	margin-bottom:3px;
 }
 
+html div.activity-comments form.ac-form {
+	margin:0px;
+}
+
+.ac-form {
+	padding: 10px 5px;
+	background-color:$yellow;
+	margin-top: 10px;
+	display:none;
+}
+
+.ac-reply-content {
+	input[type="submit"] {
+		@include btn(small, light);
+	}
+}
+
+	
 html .activity-list .activity-content .activity-inner {
 	padding-top:0px;
 	margin-top:0px;
@@ -474,9 +713,50 @@ html div.activity-meta {
 	float:left;
 }
 
-#whats-new-options {
+.mini-avatar {
+	width:30px;
+	height:30px;
+	padding:1px;
+}
+
+#new-member-prompt {
+	background-color:$yellow;
+	padding:10px 20px;
+}
+
+.nmp-schools {
+	margin-top:10px;
+	
+	.schools-index-hgroup {
+		line-height:17px;
+		margin-top:4px;
+	}
+	> li {
+		@include pie-clearfix;
+		margin-bottom:10px;
+		padding-bottom:5px;
+		min-height:52px;
+		border-bottom:1px solid rgba(50, 0, 0, .3);
+	}
+	.nmp-members {
+		display:inline-block;
+	}
+
+}
+
+.activity-avatar {
+	@extend #whats-new-avatar;
+}
+
+.ac-reply-avatar {
+	@extend #whats-new-avatar;
+	margin-right:0px;
+}
+
+html #whats-new-options {
 	float:right;
 	padding-top:9px;
+	height:auto;
 }
 
 textarea#whats-new {
@@ -532,6 +812,135 @@ textarea#whats-new {
 	width:250px;
 	border-radius:8px;
 	
+}
+
+/* SCROLLABLE */
+
+.scrollable {
+	position:relative;
+	overflow:hidden;
+
+	.items {
+		width:2000em;
+		position:absolute;
+		
+	}
+
+	.slide {
+		float:left;
+	}
+}
+
+/* GROUP TEASE */
+.group-thumbnail {
+	display:inline-block;
+	margin-right:10px;
+}
+
+.schools-directory-header {
+	@extend .section-header;
+}
+
+.schools-index-hgroup {
+	display:inline-block;
+	width:35%;
+	margin-right:3%;
+	vertical-align: top;
+	margin-top:10px;
+	line-height:24px;
+}
+
+.school-meta {
+	font-style:italic;
+	font-size:13px;
+	color:$gray;
+}
+
+.group-thumbnail img {
+	width:120px; 
+	height:100px;
+}
+
+.schools-index-header {
+	@include pie-clearfix;
+	h3 {
+		float:left;
+	}
+	.button-large {
+		float:right;
+		width:200px;
+	}
+}
+
+.group-pagination-links {
+	@include pie-clearfix;
+	li {
+		float:left;
+		display:block;
+		text-align:center;
+		border:1px solid $gray;
+		padding:4px;
+		min-width:28px;
+		margin-right:5px;
+		list-style-type:none; 
+		a {
+			margin:auto;
+			display:block;
+		}
+		a:active {
+			color:#000;
+		}
+		&:hover {
+			border-color:$red;
+		}
+	}
+}
+
+.schools-index-roster {
+	display:inline-block;	
+	vertical-align:top;
+	margin-top:10px;
+	@include pie-clearfix;
+	li {
+		float:left; 
+		a {
+			display:block;
+			border-color:$gray;
+			&:hover {
+				color:$red;
+				img {
+					border-color:$red;
+				}
+			}
+			img {
+				border-color:$gray;
+			}
+		}
+	}
+}
+
+/* TEASE */
+
+.tease-hgroup {
+}
+.tease-article {
+	@include clearfix;
+	border-bottom: 1px solid #CCC;
+padding-bottom: 10px;
+margin-bottom: 10px;
+}
+
+.tease-thumbnail-link {
+	float:left;
+}
+.tease-thumbnail {
+	
+	width:120px;
+	height:120px;
+	margin-right:15px; 
+}
+.tease-header {
+	font-size:22px;
 }
 
 /* Member Profiles */

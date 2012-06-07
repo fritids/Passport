@@ -17,6 +17,12 @@ $context: 960 !default;
 @mixin trans($trans-time: .2s,$trans-property: ease-in, $trans-function: all) {
 	@include single-transition(#{$trans-property}, #{$trans-time}, #{$trans-function}, false);
 	}
+@function max($a, $b) {
+  @return if($a > $b, $a, $b);
+}
+@function min($a, $b) {
+  @return if($a < $b, $a, $b);
+}
 
 @mixin user-select($user-select: none) {
 	-webkit-user-select: #{$user-select};
@@ -33,6 +39,15 @@ $context: 960 !default;
 		clear: none;
 		}
 	}
+@mixin linear-grad($color){
+	$hue: hue($color);
+	$sat: saturation($color);
+	$lgt: lightness($color);
+	
+	$d-sat: min($sat + 30, 100);
+	$d-lgt: min($lgt - 26, 100);
+	@include background-image(linear-gradient(hsl($hue, $sat, $lgt), hsl($hue, $d-sat, $d-lgt))); 
+}
 
 
 /* !== Sprites ==================================== */
