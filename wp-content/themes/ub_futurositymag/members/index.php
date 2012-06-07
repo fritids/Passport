@@ -20,7 +20,7 @@
 
 		<form action="" method="post" id="members-directory-form" class="dir-form">
 
-			<h3><?php _e( 'Members Directory', 'buddypress' ); ?></h3>
+			<h2><?php _e( 'Member Activity', 'buddypress' ); ?>  |  <em><a href="#" class="trigger-facebook-login">Join Now!</a></em> </h2> 
 
 			<?php do_action( 'bp_before_directory_members_content' ); ?>
 

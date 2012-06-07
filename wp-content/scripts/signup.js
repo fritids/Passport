@@ -26,7 +26,7 @@ var denizenUpdate;
 		$('.trigger-add-school-row').bind('click', THIS.addSchoolRow);
 		$('.trigger-signup-complete').bind('click', function(e){
 			e.preventDefault();
-			THIS.sendSignupData(trace);
+			THIS.sendSignupData();
 			THIS.scrollable.next();
 		});
 		$('.trigger-signup-cancel').bind('click', THIS.closeSignup);
@@ -101,18 +101,29 @@ var denizenUpdate;
 	};
 	
 	DenizenSignup.prototype.sendSignupData = function(callback){	
+		if (!callback){
+			callback = null;
+		}
 		var schools = new Array();
-		$('.signup-school-row:visible').each(function(){
-			var row = $(this);
+		
+		jQuery('.signup-school-row:visible').each(function(){
+			console.log($(this));
+			var row = jQuery(this);
 			var obj = {};
-			obj.name = row.find('.signup-school-name').val();
-			obj.id = row.find('.signup-school-name').data('id');
-			obj.year_start = row.find('.signup-school-year-start').val();
-			obj.year_end = row.find('.signup-school-year-end').val();
+			var schoolName = $(row.find('.signup-school-name')[0]);
+			obj.name = $(schoolName)[0].value;
+			//obj.id = row.find('.signup-school-name').data('id');
+			var ys = $($(this).find('.signup-school-year-start')[0]);
+			obj.year_start = ys.val();
+			var ye = $($(this).find('.signup-school-year-end')[0]);
+			obj.year_end = ye.val();
+			
 			if (obj.name || obj.id){
 				schools.push(obj);
 			}
 		});
+		
+		console.log('sending to ajax');
 		$.post('/wp-content/scripts/ajax.php', {groups:schools, action:'save_member_groups'}, callback);
 		
 	}
@@ -144,6 +155,7 @@ var denizenUpdate;
 	
 	
 	$(document).ready(function(){
+		window.$ = jQuery;
 		denizenSignup = new DenizenSignup();
 	});
 

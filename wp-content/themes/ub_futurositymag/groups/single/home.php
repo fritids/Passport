@@ -91,7 +91,7 @@
 				if (user_is_member($gi->id)){
 					echo '<a href="#" class="trigger-facebook-invite-friends notification-profile">Invite your old classmates from '.$gi->name.' to join Denizen</a>';
 					
-				} else {
+				} else if (is_user_logged_in()){
 					echo '<a href="#" class="trigger-join-group action-button-light notification-profile">Join this School</a>';
 				}
 				

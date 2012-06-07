@@ -7,6 +7,26 @@ AUTHOR: Robert Ellis
 AUTHOR URI: http://www.upstartblogger.com/
 */
 
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
 
 #applesearch{float:right;margin:0;padding:0;}
 #comments{border-top:none; solid silver;margin-top:24px;width:465px;}
@@ -23,6 +43,9 @@ AUTHOR URI: http://www.upstartblogger.com/
 #nav-above h3{clear:both;font-size:16px;padding-top:25px;}
 #nav-below h3{clear:both;font-size:16px;padding-top:12px;}
 #nav-below,.comment-link,#respond{clear:both;}
+#content-page, .entry-content-page {width:625px; float:left;}
+html #respond h3{font-size:20px;}
+#login-req {font-size:14px;}
 #pages li{float:right;font-family:Helvetica, Arial, sans-serif;font-size:10px;font-weight:700;list-style-type:none;padding-left:12px;text-transform:uppercase;}
 #pages li a:link,#pages li a:visited{color:#666;}
 #pages li a:hover{color: #259212;}
@@ -57,11 +80,16 @@ AUTHOR URI: http://www.upstartblogger.com/
 .home .sitedsmall{border-top:1px solid silver;display:inline;float:left;margin:20px 0px 0px 20px;padding:0;width:32%;}
 .home .sitedsmall img {border:0px;}
 .home .sited{border-top:1px solid silver;display:inline;float:left;margin:20px 0;padding:0; padding-top:10px; width:32%;}
-.home .sited a,.home #content .recent-comments ul li a{font-family:Helvetica, Arial, sans-serif;}
 .home ul.sited {float:left; border: 0;margin:0; padding: 0;display: inline;width:305px;}
 .home ul.sited li, .home ul.sited li p {display: inline;}
 .home ul.sited li p a{font-family: Georgia, Georgia, serif;}
-.home .sited img {width: 300px; float: left; margin: 0 15px 10px 0;}
+.home .sited img {float: left; margin: 0 15px 10px 0;}
+.twtr-hd {display:none;}
+#tweet-id-6 {display:none;}
+html .twtr-widget a img {height:56px;width:56px; border: 1px solid silver !important;}
+html .twtr-avatar {height:56px;width:56px;}
+html #twtr-widget-1 .twtr-tweet-text {margin-left:70px;}
+html .twtr-ft {display:none !important;}
 .latest-excerpt{padding-bottom:12px;}
 .latest-excerpt p{line-height:14px;font-family: Helvetica, Arial, sans-serif;}
 .left-col{border-top:1px solid silver;display:inline;float:left;margin-right:15px;text-align:right;width:305px;}
@@ -273,4 +301,56 @@ html .padder div.pagination {
 
 html .group-home #item-buttons {
 	display:none;
+}
+
+
+
+/* MEMBERS PAGE */
+
+#members-dir-list ul.item-list li {border-bottom:none; float: left; height:150px; width:300px; margin-right:20px; margin-bottom: 20px; border-bottom: 1px solid silver !important;}
+
+#members-dir-list ul.item-list .item-avatar {height:56px; width:56px; float:left; margin-right:10px;}
+
+#members-dir-list ul.item-list .location {display:block;}
+
+.section-members #item-buttons {
+	display:none;
+}
+
+.avatar-std {
+	width:56px;
+	height:56px;
+}
+
+/* SCHOOL ACTIVITY */
+.schools-activity-promo {
+	padding:5px;
+	border: 1px solid silver;
+	margin-bottom:10px;
+	
+}
+.schools-activity-promo .content {
+	background-color:#DDD;
+	padding:15px;
+}
+.schools-activity-promo .content h3 {
+	margin:0px;
+	text-align:center;
+	padding:0px;
+	font-style:italic;
+	font-family:Georgia, Times, serif, _serif;
+}
+
+.schools-activity-row {
+	border-bottom:1px solid silver;
+	padding-bottom:5px;
+	margin-bottom:20px;
+}	
+
+.schools-activity-info {
+
+}
+
+.schools-activity-image {
+
 }

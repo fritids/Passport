@@ -1,0 +1,12 @@
+body #header-logo{background-image:url('/wp-content/plugins/upstatement-admin/images/atk-admin-logo.png');width:80px}.graphicsTiny{font-size:11px;text-decoration:none}a.graphicsTiny{text-decoration:none}#media-buttons
+a{text-decoration:none}#media-buttons
+img{margin-right:5px}#media-items tr.post_content
+textarea{height:220px}html body
+.hidden{display:none}.pg-drag-target{display:block;border:3px
+dashed rgba(0,0,0,.5);padding:20px;font-family:Georgia,_serif;font-style:italic;text-align:center;box-sizing:border-box;height:150px;padding-top:62px;font-size:22px;color:rgba(0,0,0,.4)}.pg-drag-target-img.hidden{display:none}.pg-drag-target.hidden{display:none}.portfolio-row-header.header{display:none}.portfolio-gallery-header-text{width:100%;font-size:18px;padding:5px
+12px}.fs-image{float:left;width:47%;margin-right:3%;box-sizing:border-box;border:3px
+dashed rgba(0,0,0,0)}.fs-image.border{border-color:rgba(0,0,0,.5)}.pg-drag-target-img{max-width:100%;display:block;box-sizing:border-box}.fs-caption{float:left;width:50%;box-sizing:border-box}.portfolio-gallery-upload-field{display:none}.fs-caption
+label{display:block}.fs-caption
+textarea{display:block;width:100%;box-sizing:border-box;padding:14px;font-size:13px;min-height:150px}.clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}.clearfix{display:inline-block}html[xmlns] .clearfix{display:block}* html
+.clearfix{height:1%}.portfolio-row{border-bottom:1px solid rgba(0, 0, 0, .3);padding:12px
+0px;box-sizing:border-box}.portfolio-row.hidden{display:none}.portfolio-row.clearfix.hidden{display:none}

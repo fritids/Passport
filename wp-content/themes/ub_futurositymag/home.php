@@ -235,74 +235,19 @@
  
   <div class="clear"></div>
  
- <div class="recent-comments">
-        <h2>Recent Comments</h2>
-        
-        <?php if (function_exists('get_recent_comments')) : ?>
-				<ul>
-              <?php get_recent_comments(); ?>
-              </ul>
-		<?php endif; ?>
+<?php
+	include('partials/home-comments-recent.php');
+	include('partials/home-comments-twitter.php');
+?>
 
-              </div>
- <div class="sited">
-<h2>Twitter comments</h2>
- <script language="javascript">
-	/* widget config */
-	var jtw_divname                = '';  /* unique id of the widget */
-	var jtw_search                 = 'denizenmag';  /* keywords or phrase to send to search.twitter.com and display */
-	var jtw_width                  = '300px';  /* width of widget in px, %, or auto */
-	var jtw_height                 = 'auto';  /* height of widget in px, %, or auto */
-	var jtw_scroll                 = 'no';  /* add scroll bar to widget, 'yes' or 'no' */
-	var jtw_widget_background      = '';  /* background style of whole widget */
-	var jtw_widget_border          = '0px';  /* border style of whole widget */
-	var jtw_center_widget          = 'no';  /* center widget horizontally in container if 'yes' */
-	
-	/* tweet styling */
-	var jtw_tweet_textcolor        = '';  /* text color of the tweets */
-	var jtw_tweet_linkcolor        = '#e03a3a';  /* link color of the tweets */
-	var jtw_tweet_background       = '#FFFFFF';  /* background style of the tweets */
-	var jtw_tweet_newbackground    = '#FFFFFF';  /* background style of new tweets */
-	var jtw_tweet_border           = '0px';  /* border style of the tweets */
-	var jtw_tweet_margin           = '';  /* marin in px for each tweet */
-	var jtw_tweet_fontsize         = '12px';  /* fontsize in px or em of each tweet */
-	var jtw_big_img                = '';  /* display big avatar instead of small avatar */
-	var jtw_hide_img               = 'yes';  /* do not display twitter avatar if 'yes' */
-	
-	/* display config */
-	var jtw_pre_html               = ' '  /* html code to display at the top of widget */
-	var jtw_post_html              = '';  /* html code to display at the bottom of widget */
-	var jtw_mid_html               = '';  /* html code to display inbetween each tweet */
-	var jtw_widget_style_misc      = '';  /* misc css style for the widget */
-	var jtw_results_style_misc     = '';  /* misc css style for the results */
-	var jtw_tweet_style_misc       = '';  /* misc css style for each tweet */
-	var jtw_num_tweets             = '4';  /* number of tweets to display in widget (up to 100) */
-	var jtw_tweet_lang             = '';  /* language of tweets to display (2 letter country code) */
-	var jtw_widget_refresh_interval= '0';  /* the frequency (in seconds) to look for new tweets*/
-
-	
-</script>
-<script src="http://tweetgrid.com/widget/widget.js" type="text/javascript"></script>
- <!-- End edit. -->
- 
- <ul class="sited">
- 
-<?php $feature_post = get_posts( 'category=7&numberposts=10' ); ?>
-<?php foreach( $feature_post as $post ) : setup_postdata( $post ); ?>
-  		<li><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a> <?php the_excerpt(); ?></li>
-<?php endforeach; ?>
-</ul>
-</div>
 
 <div class="sited">
 
-	<!-- <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"></script>
-	<script type="text/javascript">FB.init("53599babdbecb7b8a0b92200d17dd838");</script>
-	<fb:fan profile_id="150759769886" stream="1" connections="5" width="306" height="480"></fb:fan><div style="font-size:8px; padding-left:10px">
-	<a href="http://www.facebook.com/pages/Denizen-For-Third-Culture-Kids/150759769886">Denizen: For Third Culture Kids on Facebook</a>--> </div>
  
- 
-
+ <?php
+ 	include('partials/promo-schools-activity.php');
+ ?>	
+</div>
  </div>
   <div class="clear"></div>
 

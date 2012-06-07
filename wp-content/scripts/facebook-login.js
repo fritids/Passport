@@ -80,6 +80,8 @@ var fbLogin;
 		console.log(JSON.stringify(data));
 		if (data == 'success'){
 			window.location = window.location;
+		} else {
+			alert('There was a problem logging you in, please refresh the page and click "login" one more time. Thank you.');
 		}
 	}
 	

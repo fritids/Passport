@@ -17,11 +17,6 @@
 
 	<div id="pag-top" class="pagination">
 
-		<div class="pag-count" id="member-dir-count-top">
-
-			<?php bp_members_pagination_count(); ?>
-
-		</div>
 
 		<div class="pagination-links" id="member-dir-pag-top">
 
@@ -36,30 +31,46 @@
 	<ul id="members-list" class="item-list" role="main">
 
 	<?php while ( bp_members() ) : bp_the_member(); ?>
-
+		<?php if (bp_get_member_user_id() > 1){?>
 		<li>
 			<div class="item-avatar">
 				<a href="<?php bp_member_permalink(); ?>">
 					<?php
 						$mem = get_user_info(bp_get_member_user_id());
-						echo '<img src="'.$mem->fb_image_thumb.'" class="avatar-std" />';
+						if (strlen($mem->fbid)){
+							echo '<img src="'.$mem->fb_image_thumb.'" class="avatar-std" />';
+						} else {
+							echo '<img src="/images/logo1.jpg" class="avatar-std" />';
+						}
 					?>
 				</a>
 			</div>
 
 			<div class="item">
 				<div class="item-title">
-					<a href="<?php bp_member_permalink(); ?>"><?php bp_member_name(); ?></a>
-
-					<?php if ( bp_get_member_latest_update() ) : ?>
-
-						<span class="update"> <?php bp_member_latest_update(); ?></span>
-
-					<?php endif; ?>
-
-				</div>
+					<a href="<?php bp_member_permalink(); ?>"><?php echo $mem->display_name; ?></a>
+					
+					<span class="location"> 
+					<?php
+						echo $mem->current_loc_name;
+					?>
+					
+					</span>
+				
 
 				<div class="item-meta"><span class="activity"><?php bp_member_last_active(); ?></span></div>
+				
+				
+						<?php if ( bp_get_member_latest_update() ) : ?>
+
+						<span class="update"> <?php bp_member_latest_update(array('length' =>100)) ; ?></span>
+						
+						
+
+					    <?php endif; ?>
+
+				
+				</div>
 
 				<?php do_action( 'bp_directory_members_item' ); ?>
 
@@ -83,7 +94,9 @@
 			<div class="clear"></div>
 		</li>
 
-	<?php endwhile; ?>
+	<?php 
+	}
+	endwhile; ?>
 
 	</ul>
 
@@ -93,11 +106,12 @@
 
 	<div id="pag-bottom" class="pagination">
 
-		<div class="pag-count" id="member-dir-count-bottom">
+		<!-- <div class="pag-count" id="member-dir-count-bottom">
 
 			<?php bp_members_pagination_count(); ?>
 
 		</div>
+		-->
 
 		<div class="pagination-links" id="member-dir-pag-bottom">
 
